@@ -9,29 +9,29 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@react-router/fs-routes": "^7.1.1",
-    "@react-router/node": "^7.1.1",
-    "@react-router/serve": "^7.1.1",
+    "@react-router/fs-routes": "^7.4.0",
+    "@react-router/node": "^7.4.0",
+    "@react-router/serve": "^7.4.0",
     "@repo/config-tailwind": "workspace:*",
     "@repo/ui": "workspace:*",
-    "isbot": "^5.1.17",
+    "isbot": "^5.1.25",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.1.1"
+    "react-router": "^7.4.0"
   },
   "devDependencies": {
-    "@react-router/dev": "^7.1.1",
+    "@react-router/dev": "^7.4.0",
     "@repo/config-eslint": "workspace:*",
     "@repo/config-typescript": "workspace:*",
-    "@types/node": "^20",
-    "@types/react": "^19.0.1",
-    "@types/react-dom": "^19.0.1",
-    "autoprefixer": "^10.4.20",
+    "@types/node": "^20.17.27",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
+    "autoprefixer": "^10.4.21",
     "cross-env": "^7.0.3",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.16",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
     "typescript": "5.5.4",
-    "vite": "^5.4.11",
+    "vite": "^6.2.3",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }
