@@ -1,5 +1,6 @@
 {
   "include": ["**/*.ts", "**/*.tsx"],
+  "extends": "@repo/config-typescript/base.json",
   "compilerOptions": {
     "target": "ES2022",
     "jsx": "react-jsx",
@@ -20,9 +21,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-    }
+    "noUncheckedIndexedAccess": true
   }
 }
