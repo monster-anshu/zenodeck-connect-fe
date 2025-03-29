@@ -1,4 +1,6 @@
 import sharedCss from "@repo/ui/style.css?url";
+import ReactQueryProvider from "@web-provider/react-query";
+import stylesheet from "@widget-styles.css?url";
 import {
   isRouteErrorResponse,
   Links,
@@ -8,7 +10,6 @@ import {
   ScrollRestoration,
 } from "react-router";
 import type { Route } from "./+types/root";
-import stylesheet from "./app.css?url";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -35,7 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <ReactQueryProvider>{children}</ReactQueryProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

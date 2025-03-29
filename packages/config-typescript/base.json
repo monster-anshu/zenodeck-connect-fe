@@ -28,8 +28,8 @@
     "baseUrl": "../..",
     "paths": {
       "@repo/ui/*": ["./packages/ui/src/*"],
-      "@web-*": ["./apps/web/src/*"],
-      "@docs-*": ["./apps/docs/src/*"]
+      "@web-*": ["./apps/web/app/*"],
+      "@widget-*": ["./apps/widget/src/*"]
     }
   }
 }
