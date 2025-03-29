@@ -2,10 +2,7 @@ import { Button } from "@repo/ui/components/button";
 import type { Route } from "./+types/_index";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
-  ];
+  return [{ title: "Zenodeck Connect" }];
 }
 
 export default function IndexPage() {

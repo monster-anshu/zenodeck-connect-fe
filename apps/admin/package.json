@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "admin",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,25 +9,25 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@react-router/fs-routes": "^7.4.0",
-    "@react-router/node": "^7.4.0",
-    "@react-router/serve": "^7.4.0",
+    "@react-router/fs-routes": "^7.4.1",
+    "@react-router/node": "^7.4.1",
+    "@react-router/serve": "^7.4.1",
     "@repo/config-tailwind": "workspace:*",
     "@repo/ui": "workspace:*",
     "@tanstack/react-query": "^5.70.0",
     "@tanstack/react-query-devtools": "^5.70.0",
     "isbot": "^5.1.25",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-router": "^7.4.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router": "^7.4.1"
   },
   "devDependencies": {
-    "@react-router/dev": "^7.4.0",
+    "@react-router/dev": "^7.4.1",
     "@repo/config-eslint": "workspace:*",
     "@repo/config-typescript": "workspace:*",
-    "@types/node": "^20.17.27",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
+    "@types/node": "^20.17.28",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
     "autoprefixer": "^10.4.21",
     "cross-env": "^7.0.3",
     "postcss": "^8.5.3",

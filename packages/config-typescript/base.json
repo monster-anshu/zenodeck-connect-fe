@@ -27,8 +27,8 @@
 
     "baseUrl": "../..",
     "paths": {
+      "@admin-*": ["./apps/admin/app/*"],
       "@repo/ui/*": ["./packages/ui/src/*"],
-      "@web-*": ["./apps/web/app/*"],
       "@widget-*": ["./apps/widget/src/*"]
     }
   }

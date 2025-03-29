@@ -1,6 +1,6 @@
+import stylesheet from "@admin-app.css?url";
+import ReactQueryProvider from "@admin-provider/react-query";
 import sharedCss from "@repo/ui/style.css?url";
-import ReactQueryProvider from "@web-provider/react-query";
-import stylesheet from "@widget-styles.css?url";
 import {
   isRouteErrorResponse,
   Links,
