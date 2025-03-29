@@ -1,3 +1,4 @@
+import "@repo/ui/style.css";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
