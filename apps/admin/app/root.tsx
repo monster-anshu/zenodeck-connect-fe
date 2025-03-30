@@ -1,4 +1,5 @@
 import stylesheet from "@admin-app.css?url";
+import AuthProvider from "@admin-provider/auth-provider";
 import ReactQueryProvider from "@admin-provider/react-query";
 import sharedCss from "@repo/ui/style.css?url";
 import {
@@ -36,7 +37,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <ReactQueryProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </ReactQueryProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

@@ -1,4 +1,6 @@
+import { agentInfoQuery } from "@admin-queries/agent.query";
 import { Button } from "@repo/ui/components/button";
+import { useQuery } from "@tanstack/react-query";
 import type { Route } from "./+types/_index";
 
 export function meta({}: Route.MetaArgs) {
@@ -6,10 +8,10 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function IndexPage() {
+  const { data } = useQuery(agentInfoQuery);
   return (
     <main>
-      <h1>Hello world</h1>
-      <Button>Press me</Button>
+      <p>Hello , {data?.agentInfo?.firstName}</p>
     </main>
   );
 }
