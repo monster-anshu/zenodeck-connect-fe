@@ -2,14 +2,17 @@ import React, { FC } from "react";
 import { LuSend } from "react-icons/lu";
 import { useTheme } from "../context/theme-context";
 
-type ISendMessageBlockProps = {};
+type ISendMessageBlockProps = {
+  onClick?: () => void;
+};
 
-const SendMessageBlock: FC<ISendMessageBlockProps> = () => {
+const SendMessageBlock: FC<ISendMessageBlockProps> = ({ onClick }) => {
   const { config, i18n } = useTheme();
   return (
     <button
       aria-label={i18n("blocks.sendMessage")}
       className="flex w-full items-center justify-between rounded-2xl border px-4 py-4"
+      onClick={onClick}
     >
       <div className="text-left">
         <p className="font-semibold">{i18n("blocks.sendMessage")}</p>

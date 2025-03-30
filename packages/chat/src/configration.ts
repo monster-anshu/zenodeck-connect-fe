@@ -3,15 +3,16 @@ export const deafultLanguage = {
   default: true,
   language: "ENGLISH",
   messages: {
+    "blocks.sendMessage": "Send Message",
     greeting: "Hi there 👋",
     introduction: "What's up?",
+    preChatSubmitButton: "Submit",
     preChatSubTitle:
       "Let us know what you need, and our team will assist you as soon as possible",
     preChatTitle: "Welcome! How can we help?",
     replyExpectation: "Waiting time less than 1 minute",
     sendButtonText: "Send Message",
     ticketButtonText: "Create new ticket",
-    "blocks.sendMessage": "Send Message",
   },
 };
 
@@ -164,8 +165,7 @@ export const config = {
       },
     ],
     submitButton: {
-      backgroundColor: "#ffffff",
-      text: "Submit",
+      backgroundColor: "#675CC0",
       textColor: "#ffffff",
     },
   },
