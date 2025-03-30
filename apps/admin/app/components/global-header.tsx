@@ -19,12 +19,7 @@ const GlobalHeader: FC<IGlobalHeaderProps> = () => {
   }
 
   if (active.localtionHeader) {
-    const items = [
-      { label: active.label, link: active.link },
-      //   { label: active.label, link: active.link },
-      //   { label: active.label, link: active.link },
-      //   { label: active.label, link: active.link },
-    ];
+    const items = [{ label: active.label, link: active.link }];
     return (
       <div className="col-span-2 flex gap-2 border-b px-5 py-2">
         {items.map((item, i) => {
