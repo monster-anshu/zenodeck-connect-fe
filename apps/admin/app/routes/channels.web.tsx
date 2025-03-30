@@ -4,6 +4,7 @@ import { Button } from "@repo/ui/components/button";
 import { Spinner } from "@repo/ui/components/spinner";
 import { useQuery } from "@tanstack/react-query";
 import { FC } from "react";
+import { Link } from "react-router";
 
 type IChannelWebPageProps = {};
 
@@ -34,8 +35,12 @@ const ChannelWebPage: FC<IChannelWebPageProps> = () => {
       {isLoading && <Spinner />}
       {data?.channels.map((channel) => {
         return (
-          <div key={channel._id} className="flex rounded-lg border p-4">
+          <div
+            key={channel._id}
+            className="flex items-center gap-2 rounded-lg border p-4"
+          >
             <p className="flex-1">{channel.name}</p>
+            <Link to={`/channels/web/${channel._id}`}>Edit</Link>
             <Button onClick={() => handleCopy(channel.clientId)}>
               Code code
             </Button>

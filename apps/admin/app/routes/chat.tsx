@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 type IChatPageProps = {};
 
 const ChatPage: FC<IChatPageProps> = () => {
-  return <div>ChatPage</div>;
+  return <div className="p-4">Chat page</div>;
 };
 
 export default ChatPage;

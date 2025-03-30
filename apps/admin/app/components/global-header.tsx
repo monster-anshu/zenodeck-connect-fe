@@ -11,7 +11,7 @@ const GlobalHeader: FC<IGlobalHeaderProps> = () => {
     if (pathname === "/") {
       return item.link === pathname;
     }
-    return item.link.startsWith(pathname);
+    return pathname.startsWith(item.link) && item.link !== "/";
   });
 
   if (active?.hideHeader || !active) {

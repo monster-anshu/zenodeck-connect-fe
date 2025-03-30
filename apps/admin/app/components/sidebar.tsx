@@ -1,5 +1,5 @@
 import { cn } from "@repo/ui/lib/utils";
-import React, { FC } from "react";
+import { FC } from "react";
 import { Link, useLocation } from "react-router";
 import Logo from "./logo";
 import { items } from "./sidebar-data";
@@ -18,7 +18,7 @@ const Sidebar: FC<ISidebarProps> = () => {
           if (pathname === "/") {
             isActive = item.link === pathname;
           } else {
-            isActive = item.link.startsWith(pathname);
+            isActive = pathname.startsWith(item.link) && item.link !== "/";
           }
           return (
             <Link
