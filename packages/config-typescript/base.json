@@ -28,6 +28,7 @@
     "baseUrl": "../..",
     "paths": {
       "@admin-*": ["./apps/admin/app/*"],
+      "@repo/chat/*": ["./packages/chat/src/*"],
       "@repo/ui/*": ["./packages/ui/src/*"],
       "@widget-*": ["./apps/widget/src/*"]
     }

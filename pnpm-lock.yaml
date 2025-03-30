@@ -226,6 +226,37 @@ importers:
         specifier: ^4.2.4
         version: 4.2.4
 
+  packages/chat:
+    dependencies:
+      '@repo/config-tailwind':
+        specifier: workspace:*
+        version: link:../config-tailwind
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../ui
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+      react-dom:
+        specifier: ^19.1.0
+        version: 19.1.0(react@19.1.0)
+    devDependencies:
+      '@repo/config-eslint':
+        specifier: workspace:*
+        version: link:../config-eslint
+      '@repo/config-typescript':
+        specifier: workspace:*
+        version: link:../config-typescript
+      '@types/react':
+        specifier: ^19.0.12
+        version: 19.0.12
+      '@types/react-dom':
+        specifier: ^19.0.4
+        version: 19.0.4(@types/react@19.0.12)
+      tailwindcss:
+        specifier: ^3.4.17
+        version: 3.4.17(ts-node@10.9.2(@types/node@20.17.28)(typescript@5.8.2))
+
   packages/config-eslint:
     devDependencies:
       '@eslint/js':
