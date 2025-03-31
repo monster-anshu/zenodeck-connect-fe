@@ -1,4 +1,4 @@
-import { Button } from "@repo/ui/components/button";
+import Home from "@repo/chat/home";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -7,9 +7,8 @@ export const Route = createFileRoute("/")({
 
 function App() {
   return (
-    <div className="text-center">
-      <h1>hello</h1>
-      <Button>Click me</Button>
+    <div className="h-dvh text-center">
+      <Home />
     </div>
   );
 }

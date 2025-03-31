@@ -8,6 +8,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@repo/chat": "workspace:*",
     "@repo/config-tailwind": "workspace:*",
     "@repo/ui": "workspace:*",
     "@tanstack/react-router": "^1.114.29",
