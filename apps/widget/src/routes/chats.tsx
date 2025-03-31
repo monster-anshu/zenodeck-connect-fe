@@ -9,22 +9,20 @@ function RouteComponent() {
   const router = useRouter();
 
   return (
-    <div className="h-dvh">
-      <Chats
-        onSend={() => {
-          router.navigate({
-            to: "/pre-chat",
-            viewTransition: true,
-          });
-        }}
-        onSelect={(chatId) => {
-          router.navigate({
-            to: "/chat/$chatId",
-            params: { chatId: chatId },
-            viewTransition: true,
-          });
-        }}
-      />
-    </div>
+    <Chats
+      onSend={() => {
+        router.navigate({
+          to: "/pre-chat",
+          viewTransition: true,
+        });
+      }}
+      onSelect={(chatId) => {
+        router.navigate({
+          to: "/chat/$chatId",
+          params: { chatId: chatId },
+          viewTransition: true,
+        });
+      }}
+    />
   );
 }

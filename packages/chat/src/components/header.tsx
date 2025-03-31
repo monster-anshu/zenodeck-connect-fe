@@ -9,13 +9,13 @@ type IHeaderProps = {
 };
 
 const Header: FC<IHeaderProps> = ({ children, onBack, size = "md" }) => {
-  const { config } = useTheme();
+  const { config, actions } = useTheme();
 
   return (
     <div>
       <div
         className={cn(
-          "rounded-t-xl p-6",
+          "rounded-t-3xl p-6",
           size === "md" && "pb-12",
           size === "sm" && "pb-8 pt-4"
         )}
@@ -29,7 +29,10 @@ const Header: FC<IHeaderProps> = ({ children, onBack, size = "md" }) => {
             <LuMoveLeft size={18} />
           </button>
         )}
-        <button className="float-right ml-auto block">
+        <button
+          onClick={actions?.onClose}
+          className="float-right ml-auto block"
+        >
           <LuX size={18} />
         </button>
         <div>{children}</div>

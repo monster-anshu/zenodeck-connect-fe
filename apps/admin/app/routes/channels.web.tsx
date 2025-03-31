@@ -20,7 +20,7 @@ const ChannelWebPage: FC<IChannelWebPageProps> = () => {
       const s = document.createElement("script");
       s.type = "text/javascript";
       s.async = true;
-      s.src = '${WIDGET_URL}';
+      s.src = '${WIDGET_URL}/external/main.js';
       const head = document.getElementsByTagName("head")[0];
       head?.appendChild(s);
       window.zenodeck_connect = m;

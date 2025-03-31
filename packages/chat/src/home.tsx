@@ -21,7 +21,7 @@ const Home: FC<IHomeProps> = ({ onSendMessage }) => {
   };
 
   return (
-    <main className="h-full rounded-2xl border">
+    <main className="h-full rounded-3xl">
       <Header>
         <p className="line-clamp-2 text-3xl font-medium leading-10">
           {i18n("greeting")}

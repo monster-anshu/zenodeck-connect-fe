@@ -14,7 +14,7 @@ const buildExternalTs = async () => {
   await esbuild.build({
     entryPoints: ["private/main.ts"],
     outfile: "public/external/main.js",
-    minify: true,
+    minify: false,
     bundle: true,
     define: {
       "process.env.VITE_WIDGET_DOMAIN": `'${env.VITE_WIDGET_DOMAIN}'`,

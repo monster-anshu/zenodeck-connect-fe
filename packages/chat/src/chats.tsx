@@ -15,13 +15,18 @@ type IChatsProps = {
 const Chats: FC<IChatsProps> = ({ onSelect, onSend }) => {
   const { i18n, config } = useTheme();
   return (
-    <main className="grid h-full grid-rows-[auto_1fr_auto] rounded-2xl border pb-4">
+    <main className="grid h-full grid-rows-[auto_1fr_auto] rounded-3xl pb-4">
       <Header>
         <p className="text-center text-xl font-medium">
           {i18n("multiChatTitle")}
         </p>
       </Header>
-      <div className="mb-2 flex flex-col gap-3 overflow-auto px-4">
+      <div
+        className="mb-2 flex flex-col gap-3 overflow-auto px-4"
+        style={{
+          background: config.chatWindow.backgroundColor,
+        }}
+      >
         {data.map(({ assignee, _id, messages, lastMessageInfo }) => {
           const message = messages[0]?.messageData;
           const formattedTime = lastMessageInfo?.msgTimestamp

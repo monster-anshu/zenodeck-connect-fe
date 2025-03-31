@@ -18,13 +18,12 @@ type IMessagesProps = {
 
 const Messages: FC<IMessagesProps> = ({
   assignee = defaultData.assignee,
-  chatInfo = defaultData.chatInfo,
   messages = defaultData.messages,
   onBack,
 }) => {
   const { config } = useTheme();
   return (
-    <main className="grid h-full grid-rows-[auto_1fr_auto] rounded-2xl border pb-4">
+    <main className="grid h-full grid-rows-[auto_1fr_auto] rounded-2xl pb-4">
       <Header size="sm" onBack={onBack}>
         <p className="mb-2 text-center font-medium">{assignee.name}</p>
         {false && (
@@ -37,7 +36,12 @@ const Messages: FC<IMessagesProps> = ({
           </Avatar>
         )}
       </Header>
-      <div className="space-y-2 overflow-auto">
+      <div
+        className="space-y-2 overflow-auto"
+        style={{
+          background: config.chatWindow.backgroundColor,
+        }}
+      >
         {messages.map((message) => {
           return (
             <MessageCom

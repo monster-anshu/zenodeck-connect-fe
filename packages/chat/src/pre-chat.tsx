@@ -14,7 +14,7 @@ type IPreChatProps = {
 const PreChat: FC<IPreChatProps> = ({ onSubmit, loading }) => {
   const { i18n, config } = useTheme();
   return (
-    <main className="h-full rounded-2xl border">
+    <main className="h-full rounded-2xl">
       <Header>
         <p className="mb-2 line-clamp-2 text-center font-medium">
           {i18n("preChatTitle")}

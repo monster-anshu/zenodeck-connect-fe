@@ -4,6 +4,9 @@ import { convertToVariable, hexToHsl } from "../utils/color";
 
 type Theme = {
   config: Configration;
+  actions?: {
+    onClose?: () => void;
+  };
 };
 
 const ThemeContext = createContext<Theme | null>(null);
@@ -37,6 +40,7 @@ export const useTheme = () => {
   } as React.CSSProperties;
 
   return {
+    actions: theme.actions,
     i18n: (key: keyof typeof language.messages) =>
       language.messages[key] || deafultLanguage.messages[key],
     config: config,

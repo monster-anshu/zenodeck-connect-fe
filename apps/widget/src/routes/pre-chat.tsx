@@ -8,16 +8,14 @@ export const Route = createFileRoute("/pre-chat")({
 function RouteComponent() {
   const router = useRouter();
   return (
-    <div className="h-dvh">
-      <PreChat
-        onSubmit={() =>
-          router.navigate({
-            to: "/chat/$chatId",
-            params: { chatId: "asda" },
-            viewTransition: true,
-          })
-        }
-      />
-    </div>
+    <PreChat
+      onSubmit={() =>
+        router.navigate({
+          to: "/chat/$chatId",
+          params: { chatId: "asda" },
+          viewTransition: true,
+        })
+      }
+    />
   );
 }

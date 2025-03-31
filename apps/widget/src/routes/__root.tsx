@@ -1,15 +1,19 @@
-import { ThemeContextProvider } from "@repo/chat/context/theme-context";
 import "@repo/ui/style.css";
-import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-
-import { config } from "@repo/chat/configration";
+import CombindedContext from "@widget-context/combied-context";
+import { WidgetContextProvider } from "@widget-context/widget-context";
+import WidgetThemeLoader from "@widget-context/widget-theme-loader";
 
 export const Route = createRootRoute({
   component: () => (
-    <ThemeContextProvider theme={{ config }}>
-      <Outlet />
+    <>
+      <WidgetContextProvider>
+        <WidgetThemeLoader>
+          <CombindedContext />
+        </WidgetThemeLoader>
+      </WidgetContextProvider>
       {false && <TanStackRouterDevtools />}
-    </ThemeContextProvider>
+    </>
   ),
 });

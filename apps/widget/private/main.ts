@@ -1,3 +1,5 @@
+import type { ChildrenEvent, ParentEvent } from "@widget-utils/parent";
+
 type ConnectConfig = {
   _globals?: {
     appId?: string;
@@ -50,23 +52,24 @@ function ConnectWidget(this: IConnectWidget) {
     );
   }
 
-  const host = process.env.VITE_WIDGET_DOMAIN;
+  const host = `${process.env.VITE_WIDGET_DOMAIN}`;
   let userDetails: UserDetails | null = null;
   let isIntialized = false;
 
-  const sendPostMessage = (message: object) => {
+  const sendPostMessage = (message: Partial<ChildrenEvent>) => {
     iframe.contentWindow?.postMessage(message, host);
   };
 
   const sendInitMessage = () => {
     const chatToken = localStorage.getItem(appId);
     sendPostMessage({
-      config: {
-        height: window.innerHeight,
-        width: window.innerWidth,
-        token: chatToken,
-        open: initialChatId ? true : false,
-      },
+      clientId: appId,
+      domain: window.location.hostname,
+      height: window.innerHeight,
+      open: initialChatId ? true : false,
+      token: chatToken,
+      width: window.innerWidth,
+      url: window.location.href,
     });
   };
 
@@ -78,15 +81,15 @@ function ConnectWidget(this: IConnectWidget) {
 
   const sendLoginMessage = () => {
     if (!userDetails) return;
-    sendPostMessage({
-      login: userDetails,
-    });
+    // sendPostMessage({
+    //   login: userDetails,
+    // });
   };
 
   const sendLogoutMessage = () => {
-    sendPostMessage({
-      logout: true,
-    });
+    // sendPostMessage({
+    //   logout: true,
+    // });
   };
 
   function locationChangeDetector() {
@@ -128,13 +131,15 @@ function ConnectWidget(this: IConnectWidget) {
     if (initialChatId) {
       url.searchParams.append("chatId", initialChatId);
     }
-    url.searchParams.append("clientId", appId);
-    url.searchParams.append("domain", window.location.hostname);
+    // url.searchParams.append("clientId", appId);
+    // url.searchParams.append("domain", window.location.hostname);
     iframe.src = url.toString();
     iframe.setAttribute("frameborder", "0");
     iframe.setAttribute("allowtransparency", "true");
     iframe.setAttribute("scrolling", "off");
     iframe.style.position = "fixed";
+    iframe.style.right = "0";
+    iframe.style.bottom = "0";
     iframe.style.padding = "0";
     iframe.style.margin = "0";
     iframe.style.border = "0";
@@ -144,58 +149,57 @@ function ConnectWidget(this: IConnectWidget) {
     iframe.style.maxHeight = "100vh";
     iframe.style.maxHeight = "100dvh";
     iframe.style.maxWidth = "100vw";
-    iframe.style.maxWidth = `100vw`;
+    iframe.style.maxWidth = "100dvw";
+    iframe.style.width = "56px";
+    iframe.style.height = "56px";
     iframe.style.zIndex = "500";
     iframe.style.outline = "none";
     iframe.allow = "geolocation *;";
+
+    iframe.style.right = "20px";
+    iframe.style.bottom = "20px";
+    iframe.style.display = "block";
+    iframe.style.visibility = "visible";
+    iframe.onload = () => {
+      sendInitMessage();
+    };
   };
 
   const setEventListeners = () => {
-    window.addEventListener("message", function (event) {
-      if (event.origin !== host) return;
-      const style = event?.data?.styles;
-      const token = event?.data?.token;
-      const type = event?.data?.type;
+    window.addEventListener(
+      "message",
+      function (event: MessageEvent<{ connect: ParentEvent }>) {
+        if (event.origin !== host) return;
+        console.log(event);
+        const style = event?.data.connect?.style as Record<string, string>;
+        const token = event?.data.connect?.token;
+        const type = event?.data.connect?.type;
 
-      if (token) {
-        localStorage.setItem(appId as string, token);
-      }
+        if (token) {
+          localStorage.setItem(appId, token);
+        }
 
-      if (token === null) {
-        localStorage.removeItem(appId as string);
-      }
+        if (token === null) {
+          localStorage.removeItem(appId);
+        }
 
-      if (style) {
-        for (const prop in style) {
-          if (prop in iframe.style) {
-            iframe.style.setProperty(prop, style[prop]);
+        if (style) {
+          for (const prop in style) {
+            if (prop in iframe.style) {
+              iframe.style.setProperty(prop, style[prop] ?? "");
+            }
           }
         }
-      }
 
-      if (type === "init") {
-        zenodeck_connect.onInit?.();
-        sendInitMessage();
-        sendUrlChangedMessage();
-        sendLoginMessage();
-        isIntialized = true;
+        if (type === "init") {
+          zenodeck_connect.onInit?.();
+          sendInitMessage();
+          sendUrlChangedMessage();
+          sendLoginMessage();
+          isIntialized = true;
+        }
       }
-    });
-
-    window.addEventListener("message", function (event) {
-      const type = event?.data?.orufy_connect?.type;
-      const url = event?.data?.orufy_connect?.url;
-      const target = event?.data?.orufy_connect?.target;
-
-      if (type === "openLink") {
-        const a = document.createElement("a");
-        a.href = url;
-        a.target = target;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      }
-    });
+    );
 
     window.addEventListener("resize", function () {
       sendInitMessage();
@@ -233,9 +237,7 @@ function ConnectWidget(this: IConnectWidget) {
   const openWidget = () => {
     iframe.style.display = "block";
     sendPostMessage({
-      config: {
-        open: true,
-      },
+      open: true,
     });
   };
 

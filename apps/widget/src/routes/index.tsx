@@ -9,15 +9,13 @@ function App() {
   const router = useRouter();
 
   return (
-    <div className="h-dvh">
-      <Home
-        onSendMessage={() =>
-          router.navigate({
-            to: "/pre-chat",
-            viewTransition: true,
-          })
-        }
-      />
-    </div>
+    <Home
+      onSendMessage={() =>
+        router.navigate({
+          to: "/pre-chat",
+          viewTransition: true,
+        })
+      }
+    />
   );
 }

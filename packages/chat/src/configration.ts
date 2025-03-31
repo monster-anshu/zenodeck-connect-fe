@@ -32,7 +32,7 @@ export const config = {
       iconColor: "#ffffff",
     },
     minimized: {
-      backgroundColor: "#ffffff",
+      backgroundColor: "#B51F1F",
       icon: "https://assets.orufy.com/chat_Bubble_Ellipsis_b6c4f1832b_77e3b64276.svg",
       iconColor: "#ffffff",
     },

@@ -1,0 +1,14 @@
+@keyframes popAnimation {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.chat-icon.open {
+  animation: popAnimation 0.3s ease-out;
+}

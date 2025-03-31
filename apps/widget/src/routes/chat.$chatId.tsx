@@ -9,15 +9,13 @@ function RouteComponent() {
   const router = useRouter();
 
   return (
-    <div className="h-dvh">
-      <Messages
-        onBack={() => {
-          router.navigate({
-            to: "/chats",
-            viewTransition: true,
-          });
-        }}
-      />
-    </div>
+    <Messages
+      onBack={() => {
+        router.navigate({
+          to: "/chats",
+          viewTransition: true,
+        });
+      }}
+    />
   );
 }
