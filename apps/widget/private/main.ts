@@ -46,11 +46,11 @@ function ConnectWidget(this: IConnectWidget) {
 
   if (typeof appId !== "string") {
     throw new Error(
-      "Please provide appId in orufy_connect._globals.appId in window object"
+      "Please provide appId in zenodeck_connect._globals.appId in window object"
     );
   }
 
-  const host = `${process.env.VITE_WIDGET_DOMAIN}`;
+  const host = process.env.VITE_WIDGET_DOMAIN;
   let userDetails: UserDetails | null = null;
   let isIntialized = false;
 

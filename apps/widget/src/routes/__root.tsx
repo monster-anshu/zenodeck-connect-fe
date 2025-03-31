@@ -9,7 +9,7 @@ export const Route = createRootRoute({
   component: () => (
     <ThemeContextProvider theme={{ config }}>
       <Outlet />
-      {/* <TanStackRouterDevtools  /> */}
+      {false && <TanStackRouterDevtools />}
     </ThemeContextProvider>
   ),
 });
