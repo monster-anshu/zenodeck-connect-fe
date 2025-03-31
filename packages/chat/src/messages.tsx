@@ -7,17 +7,25 @@ import { useTheme } from "./context/theme-context";
 import MessageCom from "./message-com";
 import { Assignee, Chat, Message } from "./schema";
 
+import { defaultData } from "./data/messages";
+
 type IMessagesProps = {
   messages: Message[];
   assignee: Assignee;
   chatInfo: Pick<Chat, "conversationStatus">;
+  onBack: () => void;
 };
 
-const Messages: FC<IMessagesProps> = ({ assignee, chatInfo, messages }) => {
+const Messages: FC<IMessagesProps> = ({
+  assignee = defaultData.assignee,
+  chatInfo = defaultData.chatInfo,
+  messages = defaultData.messages,
+  onBack,
+}) => {
   const { config } = useTheme();
   return (
     <main className="grid h-full grid-rows-[auto_1fr_auto] rounded-2xl border pb-4">
-      <Header size="sm" onBack={() => null}>
+      <Header size="sm" onBack={onBack}>
         <p className="mb-2 text-center font-medium">{assignee.name}</p>
         {false && (
           <Avatar

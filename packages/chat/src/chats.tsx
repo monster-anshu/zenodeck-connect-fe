@@ -7,9 +7,12 @@ import { Button } from "@repo/ui/components/button";
 import data from "./data/chats";
 import { getFormattedTimeDifference } from "./utils/time";
 
-type IChatsProps = {};
+type IChatsProps = {
+  onSelect: (chatId: string) => void;
+  onSend: () => void;
+};
 
-const Chats: FC<IChatsProps> = () => {
+const Chats: FC<IChatsProps> = ({ onSelect, onSend }) => {
   const { i18n, config } = useTheme();
   return (
     <main className="grid h-full grid-rows-[auto_1fr_auto] rounded-2xl border pb-4">
@@ -28,6 +31,7 @@ const Chats: FC<IChatsProps> = () => {
           return (
             <button
               key={_id}
+              onClick={() => onSelect(_id)}
               className="grid w-full grid-cols-[auto_1fr_auto] grid-rows-2 gap-x-2 rounded-2xl border px-3 py-4 text-start"
             >
               <div className="row-span-2">
@@ -47,6 +51,7 @@ const Chats: FC<IChatsProps> = () => {
         })}
       </div>
       <Button
+        onClick={onSend}
         className="mx-4 rounded-lg py-5"
         style={{
           color: config.multiChat.submitButton.textColor,

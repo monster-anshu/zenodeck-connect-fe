@@ -1,14 +1,23 @@
 import Home from "@repo/chat/home";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   component: App,
 });
 
 function App() {
+  const router = useRouter();
+
   return (
-    <div className="h-dvh text-center">
-      <Home />
+    <div className="h-dvh">
+      <Home
+        onSendMessage={() =>
+          router.navigate({
+            to: "/pre-chat",
+            viewTransition: true,
+          })
+        }
+      />
     </div>
   );
 }

@@ -25,7 +25,7 @@ const Header: FC<IHeaderProps> = ({ children, onBack, size = "md" }) => {
         }}
       >
         {onBack && (
-          <button className="float-left ml-auto block">
+          <button className="float-left ml-auto block" onClick={onBack}>
             <LuMoveLeft size={18} />
           </button>
         )}

@@ -14,8 +14,6 @@ import Home from "@repo/chat/home";
 import Messages from "@repo/chat/messages";
 import PreChat from "@repo/chat/pre-chat";
 
-import { defaultData } from "@repo/chat/data/messages";
-
 type IChennelPageProps = {};
 
 const ChatWindow = ({ children }: { children: ReactNode }) => {
@@ -49,7 +47,7 @@ const ChennelPage: FC<IChennelPageProps> = () => {
     componentToUse = <Faqs />;
   }
   if (tab === "general") {
-    componentToUse = <Messages {...defaultData} />;
+    componentToUse = <Messages />;
   }
 
   const component = (
