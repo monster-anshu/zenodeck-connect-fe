@@ -2,7 +2,7 @@ import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
 import { Textarea } from "@repo/ui/components/textarea";
-import React, { FC } from "react";
+import { FC } from "react";
 import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
 

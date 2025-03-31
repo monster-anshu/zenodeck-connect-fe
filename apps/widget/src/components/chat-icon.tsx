@@ -2,8 +2,7 @@ import ChatIcon from "@repo/chat/chat-icon";
 import { useTheme } from "@repo/chat/context/theme-context";
 import { cn } from "@repo/ui/lib/utils";
 import { useWidget } from "@widget-context/widget-context";
-import React, { FC } from "react";
-import { createPortal } from "react-dom";
+import { FC } from "react";
 import styles from "./chat-icon.module.css";
 
 type IChatIconComProps = {};

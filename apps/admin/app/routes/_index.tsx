@@ -1,5 +1,4 @@
 import { agentInfoQuery } from "@admin-queries/agent.query";
-import { Button } from "@repo/ui/components/button";
 import { useQuery } from "@tanstack/react-query";
 import type { Route } from "./+types/_index";
 

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { LuSend } from "react-icons/lu";
 import { useTheme } from "../context/theme-context";
 

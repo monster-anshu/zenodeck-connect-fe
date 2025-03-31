@@ -1,6 +1,6 @@
 import { Avatar } from "@repo/ui/components/avatar";
 import { Textarea } from "@repo/ui/components/textarea";
-import React, { FC } from "react";
+import { FC } from "react";
 import { LuSend } from "react-icons/lu";
 import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
@@ -13,7 +13,7 @@ type IMessagesProps = {
   messages: Message[];
   assignee: Assignee;
   chatInfo: Pick<Chat, "conversationStatus">;
-  onBack: () => void;
+  onBack?: () => void;
 };
 
 const Messages: FC<IMessagesProps> = ({

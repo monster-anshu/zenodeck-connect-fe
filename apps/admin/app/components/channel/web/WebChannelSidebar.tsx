@@ -1,5 +1,5 @@
 import { cn } from "@repo/ui/lib/utils";
-import React, { FC } from "react";
+import { FC } from "react";
 import { Link, useSearchParams } from "react-router";
 
 type IWebChannelSidebarProps = {};
@@ -35,7 +35,7 @@ const navigationItem = [
 ];
 
 const WebChannelSidebar: FC<IWebChannelSidebarProps> = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const tab = searchParams.get("tab");
 
   return (

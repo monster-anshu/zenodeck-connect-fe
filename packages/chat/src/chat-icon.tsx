@@ -1,5 +1,5 @@
 import { cn } from "@repo/ui/lib/utils";
-import React, { FC } from "react";
+import { FC } from "react";
 import { useTheme } from "./context/theme-context";
 
 type IChatIconProps = { isOpen: boolean; onClick?: () => void };

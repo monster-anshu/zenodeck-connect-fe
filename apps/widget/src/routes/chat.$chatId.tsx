@@ -1,3 +1,4 @@
+import { defaultData } from "@repo/chat/data/messages";
 import Messages from "@repo/chat/messages";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 
@@ -10,6 +11,9 @@ function RouteComponent() {
 
   return (
     <Messages
+      assignee={defaultData.assignee}
+      chatInfo={defaultData.chatInfo}
+      messages={defaultData.messages}
       onBack={() => {
         router.navigate({
           to: "/chats",

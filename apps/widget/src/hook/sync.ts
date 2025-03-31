@@ -3,7 +3,7 @@ import { sendToParent } from "@widget-utils/parent";
 import React, { useEffect } from "react";
 
 export const useSyncParent = () => {
-  const { clientId, open } = useWidget();
+  const { open } = useWidget();
 
   useEffect(() => {
     const style: React.CSSProperties = open

@@ -1,5 +1,5 @@
 import { Avatar } from "@repo/ui/components/avatar";
-import React, { FC } from "react";
+import { FC } from "react";
 import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
 
@@ -8,8 +8,8 @@ import data from "./data/chats";
 import { getFormattedTimeDifference } from "./utils/time";
 
 type IChatsProps = {
-  onSelect: (chatId: string) => void;
-  onSend: () => void;
+  onSelect?: (chatId: string) => void;
+  onSend?: () => void;
 };
 
 const Chats: FC<IChatsProps> = ({ onSelect, onSend }) => {
@@ -36,7 +36,7 @@ const Chats: FC<IChatsProps> = ({ onSelect, onSend }) => {
           return (
             <button
               key={_id}
-              onClick={() => onSelect(_id)}
+              onClick={() => onSelect?.(_id)}
               className="grid w-full grid-cols-[auto_1fr_auto] grid-rows-2 gap-x-2 rounded-2xl border px-3 py-4 text-start"
             >
               <div className="row-span-2">

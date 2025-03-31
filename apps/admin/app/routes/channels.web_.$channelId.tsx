@@ -9,6 +9,7 @@ import { createPortal } from "react-dom";
 import { useSearchParams } from "react-router";
 
 import Chats from "@repo/chat/chats";
+import { defaultData } from "@repo/chat/data/messages";
 import Faqs from "@repo/chat/faqs";
 import Home from "@repo/chat/home";
 import Messages from "@repo/chat/messages";
@@ -47,7 +48,13 @@ const ChennelPage: FC<IChennelPageProps> = () => {
     componentToUse = <Faqs />;
   }
   if (tab === "general") {
-    componentToUse = <Messages />;
+    componentToUse = (
+      <Messages
+        assignee={defaultData.assignee}
+        chatInfo={defaultData.chatInfo}
+        messages={defaultData.messages}
+      />
+    );
   }
 
   const component = (
