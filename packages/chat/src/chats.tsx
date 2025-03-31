@@ -3,19 +3,22 @@ import React, { FC } from "react";
 import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
 
+import { Button } from "@repo/ui/components/button";
 import data from "./data/chats";
 import { getFormattedTimeDifference } from "./utils/time";
 
 type IChatsProps = {};
 
 const Chats: FC<IChatsProps> = () => {
-  const { i18n } = useTheme();
+  const { i18n, config } = useTheme();
   return (
-    <main className="grid h-full grid-rows-[auto_1fr] rounded-2xl border">
+    <main className="grid h-full grid-rows-[auto_1fr_auto] rounded-2xl border pb-4">
       <Header>
-        <p className="text-center text-xl font-medium">{i18n("chatsTitle")}</p>
+        <p className="text-center text-xl font-medium">
+          {i18n("multiChatTitle")}
+        </p>
       </Header>
-      <div className="flex flex-col gap-3 overflow-auto px-4 pb-4">
+      <div className="mb-2 flex flex-col gap-3 overflow-auto px-4">
         {data.map(({ assignee, _id, messages, lastMessageInfo }) => {
           const message = messages[0]?.messageData;
           const formattedTime = lastMessageInfo?.msgTimestamp
@@ -43,6 +46,15 @@ const Chats: FC<IChatsProps> = () => {
           );
         })}
       </div>
+      <Button
+        className="mx-4 rounded-lg py-5"
+        style={{
+          color: config.multiChat.submitButton.textColor,
+          background: config.multiChat.submitButton.backgroundColor,
+        }}
+      >
+        {i18n("multiChatButton")}
+      </Button>
     </main>
   );
 };

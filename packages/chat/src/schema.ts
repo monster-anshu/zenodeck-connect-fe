@@ -34,21 +34,21 @@ const MessageMetaSchema = z.object({
     .nullish(),
 });
 
+const FromSchema = z.object({
+  emailId: z.string().nullish(),
+  name: z.string().nullish(),
+  phoneNumber: z.string().nullish(),
+  profilePic: z.string().nullish(),
+  type: z.enum(["AGENT", "CUSTOMER", "BOT"]),
+  userId: z.string().nullish(),
+});
+
 const MessageDataSchema = z.object({
   //   attachment: AttachmentSchema.nullish(),
   buttons: z.array(ButtonSchema).nullish(),
   links: z.array(LinkSchema).nullish(),
   message: z.string().nullish(),
   type: z.string(),
-});
-
-const FromSchema = z.object({
-  emailId: z.string().nullish(),
-  name: z.string().nullish(),
-  phoneNumber: z.string().nullish(),
-  profilePic: z.string().nullish(),
-  type: z.string(),
-  userId: z.string().nullish(),
 });
 
 const ReplyContextSchema = z.object({
@@ -68,7 +68,7 @@ const MessageSchema = z.object({
   messageData: MessageDataSchema.nullish(),
   metadata: MessageMetaSchema.nullish(),
   read: z.boolean().default(false),
-  replyContext: ReplyContextSchema.nullish().catch(null),
+  // replyContext: ReplyContextSchema.nullish().catch(null),
   status: z.enum(["PENDING", "SENT", "DELIVERED", "FAILED"]).default("PENDING"),
   to: z.unknown(),
   type: z.string(),
@@ -76,10 +76,10 @@ const MessageSchema = z.object({
 
 const AssigneeSchema = z.object({
   name: z.string().nullish(),
-  onlineStatus: z.string().nullish(),
+  onlineStatus: z.enum(["ONLINE", "AWAY", "OFFLINE"]).nullish(),
   profilePic: z.string().nullish(),
   teamId: z.string().nullish(),
-  type: z.string().nullish(),
+  type: z.enum(["AGENT", "CUSTOMER", "BOT"]),
   userId: z.string().nullish(),
 });
 
@@ -99,6 +99,7 @@ const ChatSchema = z.object({
     })
   ),
   unreadCount: z.number().nullable(),
+  conversationStatus: z.string().nullish(),
 });
 
 const TypingSchema = z.object({

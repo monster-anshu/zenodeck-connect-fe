@@ -11,7 +11,10 @@ import { useSearchParams } from "react-router";
 import Chats from "@repo/chat/chats";
 import Faqs from "@repo/chat/faqs";
 import Home from "@repo/chat/home";
+import Messages from "@repo/chat/messages";
 import PreChat from "@repo/chat/pre-chat";
+
+import { defaultData } from "@repo/chat/data/messages";
 
 type IChennelPageProps = {};
 
@@ -42,9 +45,11 @@ const ChennelPage: FC<IChennelPageProps> = () => {
   if (tab === "chats") {
     componentToUse = <Chats />;
   }
-
   if (tab === "faq") {
     componentToUse = <Faqs />;
+  }
+  if (tab === "general") {
+    componentToUse = <Messages {...defaultData} />;
   }
 
   const component = (

@@ -4,16 +4,16 @@ export const deafultLanguage = {
   language: "ENGLISH",
   messages: {
     "blocks.sendMessage": "Send Message",
-    chatsTitle: "Chats",
     greeting: "Hi there 👋",
     introduction: "What's up?",
+    multiChatButton: "Send Message",
+    multiChatTitle: "Chats",
     preChatSubmitButton: "Submit",
     preChatSubTitle:
       "Let us know what you need, and our team will assist you as soon as possible",
     preChatTitle: "Welcome! How can we help?",
     replyExpectation: "Waiting time less than 1 minute",
-    sendButtonText: "Send Message",
-    ticketButtonText: "Create new ticket",
+    ticketButton: "Create new ticket",
   },
 };
 
@@ -68,9 +68,8 @@ export const config = {
       textColor: "black",
     },
     sendButton: {
-      activeBackgroudColor: "#ffffff",
-      activeColor: "#ffffff",
-      color: "black",
+      backgorundColor: "#ffffff",
+      textColor: "#c2c2c2",
     },
     userChatbox: {
       backgroundColor: "#ffffff",
@@ -116,8 +115,8 @@ export const config = {
   ],
   i18n: [deafultLanguage],
   multiChat: {
-    createChatButton: {
-      backgroundColor: "#ffffff",
+    submitButton: {
+      backgroundColor: "#675CC0",
       textColor: "#ffffff",
     },
     enable: true,
