@@ -35,6 +35,13 @@ const Textarea = React.forwardRef<
         }
       }}
       {...props}
+      onChange={(ev) => {
+        if (typeof props.maxLength === "number") {
+          const value = ev.target.value.slice(0, props.maxLength);
+          ev.target.value = value;
+        }
+        props.onChange?.(ev);
+      }}
     />
   );
 });
