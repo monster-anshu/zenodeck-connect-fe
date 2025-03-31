@@ -1,7 +1,10 @@
 import WebChannelSidebar from "@admin-components/channel/web/WebChannelSidebar";
 import { config } from "@repo/chat/configration";
-import { ThemeContextProvider } from "@repo/chat/context/theme-context";
-import { FC } from "react";
+import {
+  ThemeContextProvider,
+  useTheme,
+} from "@repo/chat/context/theme-context";
+import { FC, ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { useSearchParams } from "react-router";
 
@@ -11,6 +14,18 @@ import Home from "@repo/chat/home";
 import PreChat from "@repo/chat/pre-chat";
 
 type IChennelPageProps = {};
+
+const ChatWindow = ({ children }: { children: ReactNode }) => {
+  const { cssVariables } = useTheme();
+  return (
+    <div
+      style={cssVariables}
+      className="fixed right-0 top-0 h-[550px] max-h-[100dvh] w-96 overflow-auto rounded-2xl bg-white shadow-lg"
+    >
+      {children}
+    </div>
+  );
+};
 
 const ChennelPage: FC<IChennelPageProps> = () => {
   const [searchParams] = useSearchParams();
@@ -33,11 +48,9 @@ const ChennelPage: FC<IChennelPageProps> = () => {
   }
 
   const component = (
-    <div className="fixed right-0 top-0 h-[550px] max-h-[100dvh] w-96 overflow-auto rounded-2xl bg-white shadow-lg">
-      <ThemeContextProvider theme={{ config }}>
-        {componentToUse || <Home />}
-      </ThemeContextProvider>
-    </div>
+    <ThemeContextProvider theme={{ config }}>
+      <ChatWindow>{componentToUse || <Home />}</ChatWindow>
+    </ThemeContextProvider>
   );
 
   return (

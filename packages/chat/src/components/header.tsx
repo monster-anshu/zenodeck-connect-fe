@@ -18,7 +18,7 @@ const Header: FC<IHeaderProps> = ({ children }) => {
         }}
       >
         <div>
-          <button className="ml-auto block">
+          <button className="float-right ml-auto block">
             <LuX size={18} />
           </button>
         </div>

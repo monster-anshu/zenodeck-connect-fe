@@ -16,7 +16,7 @@ const SendMessageBlock: FC<ISendMessageBlockProps> = ({ onClick }) => {
     >
       <div className="text-left">
         <p className="font-semibold">{i18n("blocks.sendMessage")}</p>
-        <p className="text-xs">{i18n("replyExpectation")}</p>
+        <p className="text-foreground/60 text-xs">{i18n("replyExpectation")}</p>
       </div>
       <div>
         <LuSend size={20} color={config.primaryColor} />

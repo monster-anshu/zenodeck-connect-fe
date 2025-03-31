@@ -7,7 +7,7 @@ import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
 
 type IHomeProps = {
-  onSendMessage: () => void;
+  onSendMessage?: () => void;
 };
 
 const Home: FC<IHomeProps> = ({ onSendMessage }) => {
@@ -30,13 +30,7 @@ const Home: FC<IHomeProps> = ({ onSendMessage }) => {
           {i18n("introduction")}
         </p>
       </Header>
-      <div
-        style={{
-          background: config.backgroundColor,
-          color: config.textColor,
-        }}
-        className="px-4 text-sm"
-      >
+      <div className="px-4 text-sm">
         {config.homeContent.map((block) => {
           const component = components[block.key];
           if (!block.enable || !component) return null;

@@ -1,5 +1,6 @@
-import { createContext, ReactNode, useContext } from "react";
+import React, { createContext, ReactNode, useContext } from "react";
 import { Configration, deafultLanguage } from "../configration";
+import { convertToVariable, hexToHsl } from "../utils/color";
 
 type Theme = {
   config: Configration;
@@ -28,9 +29,17 @@ export const useTheme = () => {
   }
   const { i18n, ...config } = theme.config;
   const language = i18n.find((lang) => lang.default) || deafultLanguage;
+
+  const cssVariables = {
+    "--primary": convertToVariable(hexToHsl(config.primaryColor)),
+    "--foreground": convertToVariable(hexToHsl(config.textColor)),
+    "--background": convertToVariable(hexToHsl(config.backgroundColor)),
+  } as React.CSSProperties;
+
   return {
     i18n: (key: keyof typeof language.messages) =>
       language.messages[key] || deafultLanguage.messages[key],
     config: config,
+    cssVariables,
   };
 };

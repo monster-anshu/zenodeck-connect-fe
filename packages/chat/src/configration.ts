@@ -4,6 +4,7 @@ export const deafultLanguage = {
   language: "ENGLISH",
   messages: {
     "blocks.sendMessage": "Send Message",
+    chatsTitle: "Chats",
     greeting: "Hi there 👋",
     introduction: "What's up?",
     preChatSubmitButton: "Submit",
@@ -18,7 +19,7 @@ export const deafultLanguage = {
 
 export const config = {
   brandColor: "#ffffff",
-  primaryColor: "#675CC0",
+  primaryColor: "#B51F1F",
   backgroundColor: "#ffffff",
   textColor: "#000000",
   chatIcon: {
