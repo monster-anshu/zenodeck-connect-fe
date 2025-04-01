@@ -1,4 +1,3 @@
-import { useTheme } from "@repo/chat/context/theme-context";
 import { cn } from "@repo/ui/lib/utils";
 import { Outlet } from "@tanstack/react-router";
 import ChatIconCom from "@widget-components/chat-icon";
@@ -13,7 +12,6 @@ const CombindedContext: FC<ICombindedContextProps> = () => {
   useSyncParent();
 
   const { open } = useWidget();
-  const { config } = useTheme();
 
   const openClass = styles["open"];
   const closeClass = styles["close"];
