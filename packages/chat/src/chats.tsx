@@ -1,9 +1,8 @@
 import { Avatar } from "@repo/ui/components/avatar";
+import { Button } from "@repo/ui/components/button";
 import { FC } from "react";
 import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
-
-import { Button } from "@repo/ui/components/button";
 import data from "./data/chats";
 import { getFormattedTimeDifference } from "./utils/time";
 
@@ -15,16 +14,21 @@ type IChatsProps = {
 const Chats: FC<IChatsProps> = ({ onSelect, onSend }) => {
   const { i18n, config } = useTheme();
   return (
-    <main className="grid h-full grid-rows-[auto_1fr_auto] rounded-3xl pb-4">
+    <main
+      className="grid h-full grid-rows-[auto_1fr_auto] rounded-3xl"
+      style={{
+        background: config.chatWindow.backgroundColor,
+      }}
+    >
       <Header>
         <p className="text-center text-xl font-medium">
           {i18n("multiChatTitle")}
         </p>
       </Header>
       <div
-        className="mb-2 flex flex-col gap-3 overflow-auto px-4"
+        className="-mt-6 flex flex-col gap-2 overflow-auto rounded-t-3xl px-4 py-4 text-sm"
         style={{
-          background: config.chatWindow.backgroundColor,
+          background: config.backgroundColor,
         }}
       >
         {data.map(({ assignee, _id, messages, lastMessageInfo }) => {
@@ -57,7 +61,7 @@ const Chats: FC<IChatsProps> = ({ onSelect, onSend }) => {
       </div>
       <Button
         onClick={onSend}
-        className="mx-4 rounded-lg py-5"
+        className="mx-4 my-2 rounded-lg py-5"
         style={{
           color: config.multiChat.submitButton.textColor,
           background: config.multiChat.submitButton.backgroundColor,

@@ -22,7 +22,7 @@ const ChatWindow = ({ children }: { children: ReactNode }) => {
   return (
     <div
       style={cssVariables}
-      className="fixed right-0 top-0 h-[550px] max-h-[100dvh] w-96 overflow-auto rounded-2xl bg-white shadow-lg"
+      className="fixed right-5 top-5 h-[550px] max-h-[100dvh] w-96 overflow-auto rounded-3xl border bg-white shadow-lg"
     >
       {children}
     </div>

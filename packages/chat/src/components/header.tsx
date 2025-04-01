@@ -37,12 +37,12 @@ const Header: FC<IHeaderProps> = ({ children, onBack, size = "md" }) => {
         </button>
         <div>{children}</div>
       </div>
-      <div
+      {/* <div
         className="-mt-6 h-6 w-full rounded-t-3xl"
         style={{
           background: config.backgroundColor,
         }}
-      ></div>
+      ></div> */}
     </div>
   );
 };

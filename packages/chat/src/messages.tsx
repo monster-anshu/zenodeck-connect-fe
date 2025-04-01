@@ -4,10 +4,9 @@ import { FC } from "react";
 import { LuSend } from "react-icons/lu";
 import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
+import { defaultData } from "./data/messages";
 import MessageCom from "./message-com";
 import { Assignee, Chat, Message } from "./schema";
-
-import { defaultData } from "./data/messages";
 
 type IMessagesProps = {
   messages: Message[];
@@ -23,7 +22,12 @@ const Messages: FC<IMessagesProps> = ({
 }) => {
   const { config } = useTheme();
   return (
-    <main className="grid h-full grid-rows-[auto_1fr_auto] rounded-2xl pb-4">
+    <main
+      className="grid h-full grid-rows-[auto_1fr_auto] rounded-3xl"
+      style={{
+        background: config.chatWindow.backgroundColor,
+      }}
+    >
       <Header size="sm" onBack={onBack}>
         <p className="mb-2 text-center font-medium">{assignee.name}</p>
         {false && (
@@ -37,7 +41,7 @@ const Messages: FC<IMessagesProps> = ({
         )}
       </Header>
       <div
-        className="space-y-2 overflow-auto"
+        className="-mt-6 space-y-2 overflow-auto rounded-t-3xl py-2"
         style={{
           background: config.chatWindow.backgroundColor,
         }}
@@ -52,7 +56,7 @@ const Messages: FC<IMessagesProps> = ({
           );
         })}
       </div>
-      <div className="grid grid-cols-[1fr_auto] items-start gap-2 px-4 pt-2">
+      <div className="grid grid-cols-[1fr_auto] items-start gap-2 px-4 py-2">
         <Textarea rows={2} className="max-h-40 rounded-xl" />
         <button
           style={{

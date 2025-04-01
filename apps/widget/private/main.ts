@@ -156,10 +156,11 @@ function ConnectWidget(this: IConnectWidget) {
     iframe.style.outline = "none";
     iframe.allow = "geolocation *;";
 
+    iframe.style.filter =
+      "drop-shadow(rgba(0, 0, 0, 0.06) 0px 1px 6px) drop-shadow(rgba(0, 0, 0, 0.16) 0px 2px 32px)";
+
     iframe.style.right = "20px";
     iframe.style.bottom = "20px";
-    iframe.style.display = "block";
-    iframe.style.visibility = "visible";
     iframe.onload = () => {
       sendInitMessage();
     };

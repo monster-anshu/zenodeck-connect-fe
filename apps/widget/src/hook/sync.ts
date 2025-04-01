@@ -8,7 +8,7 @@ export const useSyncParent = () => {
   useEffect(() => {
     const style: React.CSSProperties = open
       ? {
-          width: "396px",
+          width: "384px",
           height: "530px",
         }
       : {

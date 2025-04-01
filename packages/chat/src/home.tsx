@@ -21,7 +21,7 @@ const Home: FC<IHomeProps> = ({ onSendMessage }) => {
   };
 
   return (
-    <main className="h-full rounded-3xl">
+    <main className="grid h-full grid-rows-[auto_1fr] rounded-3xl">
       <Header>
         <p className="line-clamp-2 text-3xl font-medium leading-10">
           {i18n("greeting")}
@@ -30,7 +30,12 @@ const Home: FC<IHomeProps> = ({ onSendMessage }) => {
           {i18n("introduction")}
         </p>
       </Header>
-      <div className="px-4 text-sm">
+      <div
+        className="-mt-6 space-y-2 overflow-auto rounded-t-3xl px-4 py-4 text-sm"
+        style={{
+          background: config.backgroundColor,
+        }}
+      >
         {config.homeContent.map((block) => {
           const component = components[block.key];
           if (!block.enable || !component) return null;

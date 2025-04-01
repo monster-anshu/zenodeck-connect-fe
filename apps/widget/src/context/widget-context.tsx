@@ -1,5 +1,5 @@
 import { ReactNode } from "@tanstack/react-router";
-import { ChildrenEvent } from "@widget-utils/parent";
+import { ChildrenEvent, sendToParent } from "@widget-utils/parent";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type WidgetContextValues = ChildrenEvent;
@@ -21,6 +21,7 @@ export const WidgetContextProvider = ({
     const listner = (e: MessageEvent<ChildrenEvent>) => {
       setValue(e.data);
     };
+    sendToParent({ style: { display: "block", visibility: "visible" } });
     window.addEventListener("message", listner);
     return () => {
       window.removeEventListener("message", listner);

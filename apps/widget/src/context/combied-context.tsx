@@ -1,3 +1,4 @@
+import { useTheme } from "@repo/chat/context/theme-context";
 import { cn } from "@repo/ui/lib/utils";
 import { Outlet } from "@tanstack/react-router";
 import ChatIconCom from "@widget-components/chat-icon";
@@ -12,6 +13,7 @@ const CombindedContext: FC<ICombindedContextProps> = () => {
   useSyncParent();
 
   const { open } = useWidget();
+  const { config } = useTheme();
 
   const openClass = styles["open"];
   const closeClass = styles["close"];
@@ -21,7 +23,7 @@ const CombindedContext: FC<ICombindedContextProps> = () => {
       <div className="h-full overflow-hidden pl-2 pt-2">
         <div
           className={cn(
-            "h-full rounded-3xl",
+            "h-full overflow-auto rounded-3xl",
             styles["container"],
             open ? openClass : closeClass,
             open ? "border" : ""

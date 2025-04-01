@@ -14,7 +14,7 @@ type IPreChatProps = {
 const PreChat: FC<IPreChatProps> = ({ onSubmit, loading }) => {
   const { i18n, config } = useTheme();
   return (
-    <main className="h-full rounded-2xl">
+    <main className="grid h-full grid-rows-[auto_1fr] rounded-3xl">
       <Header>
         <p className="mb-2 line-clamp-2 text-center font-medium">
           {i18n("preChatTitle")}
@@ -23,13 +23,18 @@ const PreChat: FC<IPreChatProps> = ({ onSubmit, loading }) => {
           {i18n("preChatSubTitle")}
         </p>
       </Header>
-      <div className="space-y-3 px-4">
+      <div
+        className="-mt-6 space-y-2 overflow-auto rounded-t-3xl px-4 py-4"
+        style={{
+          background: config.backgroundColor,
+        }}
+      >
         {config.preChat.fields.map((field) => {
           if (!field.enable) return null;
           if (field.fieldType === "TEXT" || field.fieldType === "EMAIL") {
             return (
               <div key={field.name}>
-                <Label>{field.placeholder}</Label>
+                <Label className="font-normal">{field.placeholder}</Label>
                 <Input
                   type={field.fieldType === "EMAIL" ? "email" : "text"}
                   placeholder={"Enter " + field.placeholder}
@@ -42,7 +47,7 @@ const PreChat: FC<IPreChatProps> = ({ onSubmit, loading }) => {
           if (field.fieldType === "TEXT_AREA") {
             return (
               <div key={field.name}>
-                <Label>{field.placeholder}</Label>
+                <Label className="font-normal">{field.placeholder}</Label>
 
                 <Textarea
                   placeholder={"Enter " + field.placeholder}
@@ -66,7 +71,6 @@ const PreChat: FC<IPreChatProps> = ({ onSubmit, loading }) => {
           {i18n("preChatSubmitButton")}
         </Button>
       </div>
-      <div></div>
     </main>
   );
 };

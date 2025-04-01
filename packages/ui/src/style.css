@@ -56,8 +56,8 @@
   }
 }
 
-/* ::-webkit-scrollbar {
-  width: 3px;
+::-webkit-scrollbar {
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -65,7 +65,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: lightslategray;
+  background-color: hsl(var(--primary));
   border-radius: 6px;
   width: 2px;
   cursor: pointer;
@@ -73,4 +73,4 @@
   &:horizontal {
     display: none;
   }
-} */
+}

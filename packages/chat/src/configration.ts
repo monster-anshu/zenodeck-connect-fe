@@ -4,6 +4,7 @@ export const deafultLanguage = {
   language: "ENGLISH",
   messages: {
     "blocks.sendMessage": "Send Message",
+    faqTitle: "FAQ",
     greeting: "Hi there 👋",
     introduction: "What's up?",
     multiChatButton: "Send Message",
