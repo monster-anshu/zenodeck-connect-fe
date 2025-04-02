@@ -142,29 +142,6 @@ export const config = {
   ],
   preChat: {
     enable: true,
-    fields: [
-      {
-        enable: true,
-        fieldType: "TEXT",
-        name: "name",
-        placeholder: "FULL NAME",
-        required: true,
-      },
-      {
-        enable: true,
-        fieldType: "EMAIL",
-        name: "emailId",
-        placeholder: "EMAIL",
-        required: true,
-      },
-      {
-        enable: true,
-        fieldType: "TEXT_AREA",
-        name: "message",
-        placeholder: "Message",
-        required: true,
-      },
-    ],
     submitButton: {
       backgroundColor: "#675CC0",
       textColor: "#ffffff",

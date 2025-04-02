@@ -120,3 +120,12 @@ export type From = z.infer<typeof FromSchema>;
 export type Link = z.infer<typeof LinkSchema>;
 export type Typing = z.infer<typeof TypingSchema>;
 export type ReplyContext = z.infer<typeof ReplyContextSchema>;
+
+export type CustomField = {
+  enable: boolean;
+  type: "TEXT" | "EMAIL" | "TEXTAREA";
+  name: string;
+  label: string;
+  placeholder: string;
+  required: boolean;
+};
