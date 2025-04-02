@@ -19,6 +19,7 @@ export const WidgetContextProvider = ({
 
   useEffect(() => {
     const listner = (e: MessageEvent<ChildrenEvent>) => {
+      if (e.data.to !== "ZENODECK_CONNECT") return;
       setValue(e.data);
     };
     sendToParent({ style: { display: "block", visibility: "visible" } });

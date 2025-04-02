@@ -57,7 +57,10 @@ function ConnectWidget(this: IConnectWidget) {
   let isIntialized = false;
 
   const sendPostMessage = (message: Partial<ChildrenEvent>) => {
-    iframe.contentWindow?.postMessage(message, host);
+    iframe.contentWindow?.postMessage(
+      { ...message, to: "ZENODECK_CONNECT" } as ChildrenEvent,
+      host
+    );
   };
 
   const sendInitMessage = () => {

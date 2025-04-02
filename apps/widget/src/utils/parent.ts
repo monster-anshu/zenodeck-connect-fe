@@ -8,6 +8,7 @@ export type ChildrenEvent = {
   token: string | null;
   width: number;
   url: string;
+  to: "ZENODECK_CONNECT";
 };
 
 export type ParentEvent = {
@@ -18,5 +19,6 @@ export type ParentEvent = {
 };
 
 export const sendToParent = (event: ParentEvent) => {
-  window.parent.postMessage({ connect: event }, "*");
+  if (window.parent !== window)
+    window.parent.postMessage({ connect: event }, "*");
 };
