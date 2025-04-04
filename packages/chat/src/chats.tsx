@@ -9,9 +9,10 @@ import { getFormattedTimeDifference } from "./utils/time";
 type IChatsProps = {
   onSelect?: (chatId: string) => void;
   onSend?: () => void;
+  isLoading?: boolean;
 };
 
-const Chats: FC<IChatsProps> = ({ onSelect, onSend }) => {
+const Chats: FC<IChatsProps> = ({ onSelect, onSend, isLoading }) => {
   const { i18n, config } = useTheme();
   return (
     <main
@@ -62,6 +63,7 @@ const Chats: FC<IChatsProps> = ({ onSelect, onSend }) => {
       <Button
         onClick={onSend}
         className="mx-4 my-2 rounded-lg py-5"
+        loading={isLoading}
         style={{
           color: config.multiChat.submitButton.textColor,
           background: config.multiChat.submitButton.backgroundColor,

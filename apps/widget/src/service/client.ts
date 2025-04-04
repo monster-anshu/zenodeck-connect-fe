@@ -1,4 +1,6 @@
+import { sendToParent } from "@widget-utils/parent";
 import axios, { type AxiosResponse } from "axios";
+import { WebsiteService } from "./website.service";
 
 export const client = axios.create({
   adapter: "fetch",
@@ -7,6 +9,12 @@ export const client = axios.create({
 
 const commonResponseInterceptor = (response: AxiosResponse) => {
   const data = response.data as ApiResponse;
+
+  if ("authToken" in data && typeof data.authToken === "string") {
+    sendToParent({ token: data.authToken });
+    WebsiteService.token = data.authToken;
+  }
+
   if (!data?.error) return response;
   console.log("Error on response", response.config.url);
   let message = "Something went wrong";

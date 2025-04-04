@@ -53,6 +53,14 @@ const config = defineConfig({
       },
     },
   ],
+  server: {
+    proxy: {
+      "/api/v1": {
+        changeOrigin: true,
+        target: env.API_SERVER_URL,
+      },
+    },
+  },
 });
 
 export default config;

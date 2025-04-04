@@ -1,4 +1,6 @@
 import { ReactNode } from "@tanstack/react-router";
+import { ChatService } from "@widget-service/chat.service";
+import { WebsiteService } from "@widget-service/website.service";
 import { ChildrenEvent, sendToParent } from "@widget-utils/parent";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -20,6 +22,9 @@ export const WidgetContextProvider = ({
   useEffect(() => {
     const listner = (e: MessageEvent<ChildrenEvent>) => {
       if (e.data.to !== "ZENODECK_CONNECT") return;
+      if (e.data.token) {
+        WebsiteService.token = e.data.token;
+      }
       setValue(e.data);
     };
     sendToParent({ style: { display: "block", visibility: "visible" } });

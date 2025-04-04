@@ -1,4 +1,5 @@
 import { RouterProvider, createRouter } from "@tanstack/react-router";
+import ReactQueryProvider from "@widget-provider/react-query.tsx";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./app.css";
@@ -28,7 +29,9 @@ if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <ReactQueryProvider>
+        <RouterProvider router={router} />
+      </ReactQueryProvider>
     </StrictMode>
   );
 }
