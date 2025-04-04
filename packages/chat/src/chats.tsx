@@ -3,16 +3,17 @@ import { Button } from "@repo/ui/components/button";
 import { FC } from "react";
 import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
-import data from "./data/chats";
+import { Chat } from "./schema";
 import { getFormattedTimeDifference } from "./utils/time";
 
 type IChatsProps = {
   onSelect?: (chatId: string) => void;
   onSend?: () => void;
   isLoading?: boolean;
+  chats: Chat[];
 };
 
-const Chats: FC<IChatsProps> = ({ onSelect, onSend, isLoading }) => {
+const Chats: FC<IChatsProps> = ({ onSelect, onSend, isLoading, chats }) => {
   const { i18n, config } = useTheme();
   return (
     <main
@@ -32,10 +33,12 @@ const Chats: FC<IChatsProps> = ({ onSelect, onSend, isLoading }) => {
           background: config.backgroundColor,
         }}
       >
-        {data.map(({ assignee, _id, messages, lastMessageInfo }) => {
-          const message = messages[0]?.messageData;
-          const formattedTime = lastMessageInfo?.msgTimestamp
-            ? getFormattedTimeDifference(new Date(lastMessageInfo.msgTimestamp))
+        {chats.map(({ assignee, _id, lastMessageInfo }) => {
+          const message = lastMessageInfo?.message;
+          const formattedTime = lastMessageInfo?.activityTimestamp
+            ? getFormattedTimeDifference(
+                new Date(lastMessageInfo?.activityTimestamp)
+              )
             : "Unknow";
 
           return (
@@ -47,9 +50,7 @@ const Chats: FC<IChatsProps> = ({ onSelect, onSend, isLoading }) => {
               <div className="row-span-2">
                 <Avatar>{assignee?.name}</Avatar>
               </div>
-              <p className="line-clamp-1 text-sm font-medium">
-                {message?.message}
-              </p>
+              <p className="line-clamp-1 text-sm font-medium">{message}</p>
               <div className="row-span-2"></div>
               <p className="text-foreground/60 line-clamp-1 flex gap-0.5 text-xs">
                 <span>{assignee?.name}</span>

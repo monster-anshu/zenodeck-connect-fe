@@ -15,6 +15,10 @@ export function getFormattedTimeDifference(date: Date): string {
   const monthsAgo = differenceInMonths(now, date);
   const yearsAgo = differenceInYears(now, date);
 
+  if (minutesAgo === 0) {
+    return "Just now";
+  }
+
   if (minutesAgo < 60) {
     return `${minutesAgo} min ago`;
   } else if (hoursAgo < 24) {

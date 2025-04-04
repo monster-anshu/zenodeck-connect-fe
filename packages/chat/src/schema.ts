@@ -61,7 +61,7 @@ const ReplyContextSchema = z.object({
 const MessageSchema = z.object({
   _id: z.string(),
   activityAt: z.number(),
-  activityTimestamp: z.string(),
+  timestamp: z.string(),
   chatId: z.string(),
   from: FromSchema,
   hide: z.boolean().nullish(),
@@ -75,6 +75,7 @@ const MessageSchema = z.object({
 });
 
 const AssigneeSchema = z.object({
+  botId: z.string().nullish(),
   name: z.string().nullish(),
   onlineStatus: z.enum(["ONLINE", "AWAY", "OFFLINE"]).nullish(),
   profilePic: z.string().nullish(),
@@ -83,22 +84,19 @@ const AssigneeSchema = z.object({
   userId: z.string().nullish(),
 });
 
-const ChatSchema = z.object({
+const LastActivity = z.object({
+  activityTimestamp: z.string().nullish(),
+  id: z.string().nullish(),
+  message: z.string().nullish(),
+  type: z.string().nullish(),
+});
+
+export const ChatSchema = z.object({
   _id: z.string(),
   assignee: AssigneeSchema.nullish(),
   customerId: z.string(),
-  lastMessageInfo: z
-    .object({
-      msgTimestamp: z.string(),
-    })
-    .nullish(),
-  messages: z.array(
-    MessageSchema.pick({
-      messageData: true,
-      _id: true,
-    })
-  ),
-  unreadCount: z.number().nullable(),
+  lastMessageInfo: LastActivity.nullish(),
+  unreadCount: z.number().nullish(),
   conversationStatus: z.string().nullish(),
 });
 

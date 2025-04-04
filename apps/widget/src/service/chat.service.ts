@@ -1,3 +1,4 @@
+import { Chat } from "@repo/chat/schema";
 import { client } from "./client";
 import { WebsiteService } from "./website.service";
 
@@ -11,6 +12,20 @@ export class ChatService {
 
     return data;
   }
+
+  static async send(chatId: string, body: SendRequest) {
+    const { data } = await client.post<ListResponse>(
+      `/website/${chatId}/message`,
+      body,
+      {
+        headers: {
+          Authorization: WebsiteService.token,
+        },
+      }
+    );
+
+    return data;
+  }
 }
 
 type ListResponse = {
@@ -19,27 +34,14 @@ type ListResponse = {
   chats: Chat[];
 };
 
-type Chat = {
-  _id: string;
-  appId: string;
-  assignee: Assignee;
-  status: string;
-  customerId: string;
-  totalMsgCount: number;
-  channelId: string;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
-type Assignee = {
-  assignedAt: Date;
-  type: string;
-  userId: string;
-};
-
 type Customer = {
   name: string;
   emailId: string;
   message: string;
   _id: string;
+};
+
+export type SendRequest = {
+  type: "TEXT";
+  message: string;
 };

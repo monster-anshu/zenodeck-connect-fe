@@ -1,4 +1,5 @@
 import Chats from "@repo/chat/chats";
+import { ChatSchema } from "@repo/chat/schema";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useWidget } from "@widget-context/widget-context";
@@ -29,6 +30,7 @@ function RouteComponent() {
 
   return (
     <Chats
+      chats={data?.chats || []}
       onSend={() => {
         if (data?.customer) {
           mutate({});
