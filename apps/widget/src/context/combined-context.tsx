@@ -18,19 +18,23 @@ const CombindedContext: FC<ICombindedContextProps> = () => {
 
   return (
     <>
-      <div className="h-full overflow-hidden pl-2 pt-2">
+      <div className="h-full overflow-hidden">
         <div
-          className={cn(
-            "h-full overflow-auto rounded-3xl",
-            styles["container"],
-            open ? openClass : closeClass,
-            open ? "border" : ""
-          )}
+          className="h-full pl-2 pt-2"
           style={{
             display: open ? "block" : "none",
           }}
         >
-          <Outlet />
+          <div
+            className={cn(
+              "h-full overflow-auto rounded-3xl",
+              styles["container"],
+              open ? openClass : closeClass,
+              open ? "border" : ""
+            )}
+          >
+            <Outlet />
+          </div>
         </div>
       </div>
       <ChatIconCom />

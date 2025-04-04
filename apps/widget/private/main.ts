@@ -174,7 +174,6 @@ function ConnectWidget(this: IConnectWidget) {
       "message",
       function (event: MessageEvent<{ connect: ParentEvent }>) {
         if (event.origin !== host) return;
-        console.log(event);
         const style = event?.data.connect?.style as Record<string, string>;
         const token = event?.data.connect?.token;
         const type = event?.data.connect?.type;
@@ -197,7 +196,6 @@ function ConnectWidget(this: IConnectWidget) {
 
         if (type === "init") {
           zenodeck_connect.onInit?.();
-          sendInitMessage();
           sendUrlChangedMessage();
           sendLoginMessage();
           isIntialized = true;
@@ -206,7 +204,10 @@ function ConnectWidget(this: IConnectWidget) {
     );
 
     window.addEventListener("resize", function () {
-      sendInitMessage();
+      sendPostMessage({
+        height: window.innerHeight,
+        width: window.innerWidth,
+      });
     });
   };
 

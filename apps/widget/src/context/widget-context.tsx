@@ -25,7 +25,7 @@ export const WidgetContextProvider = ({
       if (e.data.token) {
         WebsiteService.token = e.data.token;
       }
-      setValue(e.data);
+      setValue((curr) => ({ ...curr, ...e.data }));
     };
     sendToParent({ style: { display: "block", visibility: "visible" } });
     window.addEventListener("message", listner);
