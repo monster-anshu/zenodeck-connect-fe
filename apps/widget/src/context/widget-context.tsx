@@ -1,5 +1,4 @@
 import { ReactNode } from "@tanstack/react-router";
-import { ChatService } from "@widget-service/chat.service";
 import { WebsiteService } from "@widget-service/website.service";
 import { ChildrenEvent, sendToParent } from "@widget-utils/parent";
 import { createContext, useContext, useEffect, useState } from "react";

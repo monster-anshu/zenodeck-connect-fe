@@ -5,7 +5,7 @@ const sampleMessageDataArray: Message[] = Array.from(
   (_, index) => ({
     _id: `msg_123456_${index}`,
     activityAt: 1711814400000, // Hardcoded timestamp (e.g., April 1, 2024)
-    activityTimestamp: "2024-04-01T12:00:00.000Z",
+    timestamp: "2024-04-01T12:00:00.000Z",
     chatId: `chat_7890_${index}`,
     from: {
       id: `user_00${index}`,

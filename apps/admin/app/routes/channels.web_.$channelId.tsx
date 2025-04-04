@@ -42,7 +42,7 @@ const ChennelPage: FC<IChennelPageProps> = () => {
     componentToUse = <PreChat />;
   }
   if (tab === "chats") {
-    componentToUse = <Chats />;
+    componentToUse = <Chats chats={[]} />;
   }
   if (tab === "faq") {
     componentToUse = <Faqs />;
