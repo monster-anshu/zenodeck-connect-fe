@@ -126,11 +126,8 @@ function ConnectWidget(this: IConnectWidget) {
   }
 
   const setIframeAttributes = () => {
-    const chatToken = localStorage.getItem(appId);
     const url = new URL(host);
-    if (chatToken) {
-      url.searchParams.append("token", chatToken);
-    }
+
     if (initialChatId) {
       url.searchParams.append("chatId", initialChatId);
     }
