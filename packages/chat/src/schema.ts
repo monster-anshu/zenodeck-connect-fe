@@ -42,6 +42,7 @@ const AgentSchema = z.object({
 const CustomerSchema = z.object({
   name: z.string().nullish(),
   emailId: z.string().nullish(),
+  onlineStatus: z.string().nullish(),
 });
 
 const FromSchema = z.object({
