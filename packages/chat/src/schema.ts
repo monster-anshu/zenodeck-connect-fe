@@ -105,6 +105,7 @@ export const ChatSchema = z.object({
   lastMessageInfo: LastActivity.nullish(),
   unreadCount: z.number().nullish(),
   status: z.string().nullish(),
+  customer: CustomerSchema.nullish(),
 });
 
 const TypingSchema = z.object({

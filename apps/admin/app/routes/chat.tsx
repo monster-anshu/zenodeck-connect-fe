@@ -11,7 +11,7 @@ const ChatPage: FC<IChatPageProps> = () => {
   const { chatId } = useParams();
   return (
     <div className="grid h-full grid-cols-[300px_1fr]">
-      <div className="border-r px-1 py-1">
+      <div className="space-y-0.5 overflow-auto border-r px-1 py-1">
         {data?.chats.map((chat) => {
           return <ChatItem chat={chat} key={chat._id} />;
         })}
