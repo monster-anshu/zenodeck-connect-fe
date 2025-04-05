@@ -9,18 +9,13 @@ export class ChatService {
   }
 
   static async send(chatId: string, body: SendRequest) {
-    const { data } = await client.post<SendResponse>(
-      `/website/${chatId}/message`,
-      body
-    );
+    const { data } = await client.post<SendResponse>(`/chat/${chatId}`, body);
 
     return data;
   }
 
   static async messages(chatId: string) {
-    const { data } = await client.get<MessageResponse>(
-      `/website/${chatId}/message`
-    );
+    const { data } = await client.get<MessageResponse>(`/chat/${chatId}`);
 
     return data;
   }
