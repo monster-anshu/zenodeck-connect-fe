@@ -5,3 +5,9 @@ export const chatListQuery = queryOptions({
   queryKey: ["chats"],
   queryFn: ChatService.list,
 });
+
+export const messagesQuery = (chatId: string) =>
+  queryOptions({
+    queryKey: ["messages", chatId],
+    queryFn: () => ChatService.messages(chatId),
+  });

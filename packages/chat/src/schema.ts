@@ -34,11 +34,18 @@ const MessageMetaSchema = z.object({
     .nullish(),
 });
 
-const FromSchema = z.object({
-  emailId: z.string().nullish(),
+const AgentSchema = z.object({
   name: z.string().nullish(),
-  phoneNumber: z.string().nullish(),
   profilePic: z.string().nullish(),
+});
+
+const CustomerSchema = z.object({
+  name: z.string().nullish(),
+  emailId: z.string().nullish(),
+});
+
+const FromSchema = z.object({
+  customerId: z.string().nullish(),
   type: z.enum(["AGENT", "CUSTOMER", "BOT"]),
   userId: z.string().nullish(),
 });
@@ -60,18 +67,18 @@ const ReplyContextSchema = z.object({
 
 const MessageSchema = z.object({
   _id: z.string(),
-  activityAt: z.number(),
-  timestamp: z.string(),
+  agent: AgentSchema.nullish(),
   chatId: z.string(),
+  customer: CustomerSchema.nullish(),
   from: FromSchema,
   hide: z.boolean().nullish(),
   messageData: MessageDataSchema.nullish(),
   metadata: MessageMetaSchema.nullish(),
-  read: z.boolean().default(false),
   // replyContext: ReplyContextSchema.nullish().catch(null),
   status: z.enum(["PENDING", "SENT", "DELIVERED", "FAILED"]).default("PENDING"),
-  to: z.unknown(),
+  timestamp: z.string(),
   type: z.string(),
+  isRight: z.boolean().nullish(),
 });
 
 const AssigneeSchema = z.object({
@@ -97,7 +104,7 @@ export const ChatSchema = z.object({
   customerId: z.string(),
   lastMessageInfo: LastActivity.nullish(),
   unreadCount: z.number().nullish(),
-  conversationStatus: z.string().nullish(),
+  status: z.string().nullish(),
 });
 
 const TypingSchema = z.object({
@@ -118,6 +125,8 @@ export type From = z.infer<typeof FromSchema>;
 export type Link = z.infer<typeof LinkSchema>;
 export type Typing = z.infer<typeof TypingSchema>;
 export type ReplyContext = z.infer<typeof ReplyContextSchema>;
+export type Customer = z.infer<typeof CustomerSchema>;
+export type Agent = z.infer<typeof AgentSchema>;
 
 export type CustomField = {
   enable: boolean;

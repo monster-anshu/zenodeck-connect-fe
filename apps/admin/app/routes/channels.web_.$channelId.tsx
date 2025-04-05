@@ -9,7 +9,7 @@ import { createPortal } from "react-dom";
 import { useSearchParams } from "react-router";
 
 import Chats from "@repo/chat/chats";
-import { defaultData } from "@repo/chat/data/messages";
+import { sampleData } from "@repo/chat/data/messages";
 import Faqs from "@repo/chat/faqs";
 import Home from "@repo/chat/home";
 import Messages from "@repo/chat/messages";
@@ -42,7 +42,14 @@ const ChennelPage: FC<IChennelPageProps> = () => {
     componentToUse = <PreChat />;
   }
   if (tab === "chats") {
-    componentToUse = <Chats chats={[]} />;
+    componentToUse = (
+      <Chats
+        chats={Array.from({ length: 100 }).map((_, i) => ({
+          ...sampleData.chat,
+          _id: i + "",
+        }))}
+      />
+    );
   }
   if (tab === "faq") {
     componentToUse = <Faqs />;
@@ -50,9 +57,9 @@ const ChennelPage: FC<IChennelPageProps> = () => {
   if (tab === "general") {
     componentToUse = (
       <Messages
-        assignee={defaultData.assignee}
-        chatInfo={defaultData.chatInfo}
-        messages={defaultData.messages}
+        assignee={sampleData.assignee}
+        chat={sampleData.chat}
+        messages={sampleData.messages}
       />
     );
   }

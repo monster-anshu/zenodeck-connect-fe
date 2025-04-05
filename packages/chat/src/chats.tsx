@@ -9,11 +9,18 @@ import { getFormattedTimeDifference } from "./utils/time";
 type IChatsProps = {
   onSelect?: (chatId: string) => void;
   onSend?: () => void;
+  onBack?: () => void;
   isLoading?: boolean;
   chats: Chat[];
 };
 
-const Chats: FC<IChatsProps> = ({ onSelect, onSend, isLoading, chats }) => {
+const Chats: FC<IChatsProps> = ({
+  onSelect,
+  onSend,
+  isLoading,
+  chats,
+  onBack,
+}) => {
   const { i18n, config } = useTheme();
   return (
     <main
@@ -22,7 +29,7 @@ const Chats: FC<IChatsProps> = ({ onSelect, onSend, isLoading, chats }) => {
         background: config.chatWindow.backgroundColor,
       }}
     >
-      <Header>
+      <Header onBack={onBack}>
         <p className="text-center text-xl font-medium">
           {i18n("multiChatTitle")}
         </p>

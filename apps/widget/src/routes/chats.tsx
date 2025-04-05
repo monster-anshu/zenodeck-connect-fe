@@ -40,6 +40,12 @@ function RouteComponent() {
           viewTransition: true,
         });
       }}
+      onBack={() => {
+        router.navigate({
+          to: "/",
+          viewTransition: true,
+        });
+      }}
       isLoading={isPending}
       onSelect={(chatId) => {
         router.navigate({

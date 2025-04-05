@@ -57,7 +57,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -65,7 +65,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--primary));
+  background-color: #a6a6a6;
   border-radius: 6px;
   width: 2px;
   cursor: pointer;

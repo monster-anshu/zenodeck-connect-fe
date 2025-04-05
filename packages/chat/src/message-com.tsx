@@ -3,14 +3,10 @@ import { Message } from "./schema";
 
 type IMessageComProps = {
   message: Message;
-  viewerType: "AGENT" | "CUSTOMER";
 };
 
-const MessageCom: FC<IMessageComProps> = ({ message, viewerType }) => {
-  const isRight =
-    viewerType === "CUSTOMER"
-      ? message.from.type === "AGENT" || message.from.type === "BOT"
-      : message.from.type === "CUSTOMER";
+const MessageCom: FC<IMessageComProps> = ({ message }) => {
+  const isRight = message.isRight;
 
   return (
     <div className="px-2">
@@ -19,9 +15,11 @@ const MessageCom: FC<IMessageComProps> = ({ message, viewerType }) => {
           marginRight: isRight ? "0px" : "auto",
           marginLeft: isRight ? "auto" : "0px",
         }}
-        className="bg-secondary w-fit max-w-[70%] rounded-xl px-3 py-4"
+        className="bg-secondary w-fit max-w-[85%] rounded-sm px-3 py-2 text-sm"
       >
-        {message.messageData?.message}
+        <p className="whitespace-break-spaces break-all">
+          {message.messageData?.message}
+        </p>
       </div>
     </div>
   );

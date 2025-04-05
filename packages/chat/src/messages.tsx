@@ -4,7 +4,6 @@ import { FC, useState } from "react";
 import { LuSend } from "react-icons/lu";
 import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
-import { defaultData } from "./data/messages";
 import MessageCom from "./message-com";
 import { Assignee, Chat, Message } from "./schema";
 
@@ -15,15 +14,15 @@ type onSubmitParams = {
 
 type IMessagesProps = {
   messages: Message[];
-  assignee: Assignee;
-  chatInfo: Pick<Chat, "conversationStatus">;
+  assignee?: Assignee;
+  chat?: Pick<Chat, "status">;
   onBack?: () => void;
   onSubmit?: (value: onSubmitParams) => void;
 };
 
 const Messages: FC<IMessagesProps> = ({
-  assignee = defaultData.assignee,
-  messages = defaultData.messages,
+  assignee,
+  messages,
   onBack,
   onSubmit,
 }) => {
@@ -31,7 +30,9 @@ const Messages: FC<IMessagesProps> = ({
   const [text, setText] = useState("");
 
   const handleSend = () => {
+    if (!text) return;
     onSubmit?.({ type: "TEXT", message: text });
+    setText("");
   };
 
   return (
@@ -42,31 +43,25 @@ const Messages: FC<IMessagesProps> = ({
       }}
     >
       <Header size="sm" onBack={onBack}>
-        <p className="mb-2 text-center font-medium">{assignee.name}</p>
+        <p className="mb-2 text-center font-medium">{assignee?.name}</p>
         {false && (
           <Avatar
             imageClassName="mx-auto"
             className="mx-auto"
-            profilePic={assignee.profilePic}
+            profilePic={assignee?.profilePic}
           >
-            {assignee.name}
+            {assignee?.name}
           </Avatar>
         )}
       </Header>
       <div
-        className="-mt-6 space-y-2 overflow-auto rounded-t-3xl py-2"
+        className="-mt-6 flex flex-col-reverse gap-y-1 overflow-auto rounded-t-3xl py-2"
         style={{
           background: config.chatWindow.backgroundColor,
         }}
       >
         {messages.map((message) => {
-          return (
-            <MessageCom
-              viewerType="CUSTOMER"
-              message={message}
-              key={message._id}
-            />
-          );
+          return <MessageCom message={message} key={message._id} />;
         })}
       </div>
       <div className="grid grid-cols-[1fr_auto] items-start gap-2 px-4 py-2">
