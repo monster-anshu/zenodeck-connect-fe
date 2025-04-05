@@ -1,6 +1,6 @@
 import { Chat } from "@repo/chat/schema";
 import { Avatar } from "@repo/ui/components/avatar";
-import React, { FC } from "react";
+import { FC } from "react";
 
 type IChatHeaderProps = {
   chat: Chat;

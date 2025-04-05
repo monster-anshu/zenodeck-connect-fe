@@ -11,9 +11,10 @@ type IMessagePageProps = {};
 
 const MessagePage: FC<IMessagePageProps> = () => {
   const agentQuery = useQuery({ ...agentInfoQuery, refetchOnMount: false });
+  const params = useParams();
+  const chatId = params.chatId!;
 
-  const { chatId } = useParams();
-  const query = messagesQuery(chatId!);
+  const query = messagesQuery(chatId);
   const { data, isSuccess } = useQuery(query);
 
   if (!isSuccess) {
@@ -26,7 +27,7 @@ const MessagePage: FC<IMessagePageProps> = () => {
     })
     .map((message) => {
       message.isRight =
-        agentQuery.data?.agentInfo?._id === message.from.customerId;
+        agentQuery.data?.agentInfo?.userId === message.from.userId;
       return message;
     });
 
@@ -38,7 +39,7 @@ const MessagePage: FC<IMessagePageProps> = () => {
           return <MessageItem message={message} key={message._id} />;
         })}
       </div>
-      <ChatInput />
+      <ChatInput chatId={chatId} />
     </div>
   );
 };
