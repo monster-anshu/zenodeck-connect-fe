@@ -1,9 +1,26 @@
+import ChatItem from "@admin-components/chat/ChatItem";
+import { chatListQuery } from "@admin-queries/chat.query";
+import { useQuery } from "@tanstack/react-query";
 import { FC } from "react";
+import { Outlet, useParams } from "react-router";
 
 type IChatPageProps = {};
 
 const ChatPage: FC<IChatPageProps> = () => {
-  return <div className="p-4">Chat page</div>;
+  const { data } = useQuery(chatListQuery);
+  const { chatId } = useParams();
+  return (
+    <div className="grid h-full grid-cols-[300px_1fr]">
+      <div className="border-r px-1 py-1">
+        {data?.chats.map((chat) => {
+          return <ChatItem chat={chat} key={chat._id} />;
+        })}
+      </div>
+      <div className="bg-secondary">
+        <Outlet key={chatId} />
+      </div>
+    </div>
+  );
 };
 
 export default ChatPage;
