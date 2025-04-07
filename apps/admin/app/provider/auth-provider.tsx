@@ -1,7 +1,7 @@
 import { agentInfoQuery } from "@admin-queries/agent.query";
 import { Spinner } from "@repo/ui/components/spinner";
 import { useQuery } from "@tanstack/react-query";
-import type { FC, ReactNode } from "react";
+import { type FC, type ReactNode } from "react";
 
 type IAuthProviderProps = {
   children: ReactNode;

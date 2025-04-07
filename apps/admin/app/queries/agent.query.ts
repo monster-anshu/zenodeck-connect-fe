@@ -2,14 +2,19 @@ import { AgentService } from "@admin-services/agent.service";
 import { queryOptions } from "@tanstack/react-query";
 import ReconnectingWebSocket from "reconnecting-websocket";
 
+let socket: ReconnectingWebSocket;
+
 export const agentInfoQuery = queryOptions({
   queryKey: ["agent-info"],
   queryFn: async () => {
     const res = await AgentService.info();
 
-    const socket = new ReconnectingWebSocket(
-      res.socketUrl + "?token=" + res.authToken
-    );
+    socket =
+      socket ||
+      new ReconnectingWebSocket(res.socketUrl + "?token=" + res.authToken, [], {
+        connectionTimeout: 1000 * 60,
+        maxRetries: 3,
+      });
 
     return {
       appInfo: res.appInfo!,
