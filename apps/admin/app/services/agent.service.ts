@@ -11,6 +11,8 @@ export type InfoResponse = {
   isSuccess: boolean;
   appInfo?: AppInfo;
   agentInfo?: AgentInfo;
+  socketUrl: string;
+  authToken: string;
 };
 
 export type AgentInfo = {
