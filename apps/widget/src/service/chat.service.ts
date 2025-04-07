@@ -1,4 +1,5 @@
 import { Chat, Message } from "@repo/chat/schema";
+import { normalize } from "@repo/ui/lib/normalize";
 import { client } from "./client";
 import { WebsiteService } from "./website.service";
 
@@ -37,7 +38,7 @@ export class ChatService {
       }
     );
 
-    return data;
+    return { ...data, activities: normalize(data.activities, "_id") };
   }
 }
 

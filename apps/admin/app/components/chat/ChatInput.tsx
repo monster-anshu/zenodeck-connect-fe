@@ -4,14 +4,16 @@ import { ChatService, SendRequest } from "@admin-services/chat.service";
 import { Button } from "@repo/ui/components/button";
 import { Textarea } from "@repo/ui/components/textarea";
 import { useMutation } from "@tanstack/react-query";
+import { produce } from "immer";
 import { FC, useState } from "react";
 
 type IChatInputProps = {
   chatId: string;
+  userId: string;
 };
 
-const ChatInput: FC<IChatInputProps> = ({ chatId }) => {
-  const query = messagesQuery(chatId);
+const ChatInput: FC<IChatInputProps> = ({ chatId, userId }) => {
+  const query = messagesQuery(chatId, userId);
 
   const [text, setText] = useState("");
 
@@ -20,7 +22,14 @@ const ChatInput: FC<IChatInputProps> = ({ chatId }) => {
     onSuccess: (data) => {
       queryClient.setQueryData(query.queryKey, (curr) => {
         if (!curr) return;
-        return { ...curr, activities: [data.activity, ...curr.activities] };
+        const update = produce(curr, (draft) => {
+          const firstPage = draft.pages[0];
+          if (!firstPage) {
+            return;
+          }
+          firstPage.activities[data.activity._id] = data.activity;
+        });
+        return update;
       });
     },
   });

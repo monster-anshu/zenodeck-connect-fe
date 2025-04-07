@@ -1,4 +1,5 @@
 import { Chat, Message } from "@repo/chat/schema";
+import { normalize } from "@repo/ui/lib/normalize";
 import { client } from "./client";
 
 export class ChatService {
@@ -17,7 +18,7 @@ export class ChatService {
   static async messages(chatId: string) {
     const { data } = await client.get<MessageResponse>(`/chat/${chatId}`);
 
-    return data;
+    return { ...data, activities: normalize(data.activities, "_id") };
   }
 }
 
