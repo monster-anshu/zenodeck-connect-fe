@@ -2,7 +2,7 @@ import { Message } from "@repo/chat/schema";
 import { useQuery } from "@tanstack/react-query";
 import { useWidget } from "@widget-context/widget-context";
 import { chatListQuery } from "@widget-quries/chat.query";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 export type SocketListners = {
   ACTIVITY?: (activity: Message) => void;
@@ -32,5 +32,12 @@ export const useSocket = (listeners?: SocketListners) => {
     };
   }, [socket, listeners]);
 
-  return socket;
+  const handleSend = useCallback(
+    (message: unknown) => {
+      socket?.send(JSON.stringify(message));
+    },
+    [socket]
+  );
+
+  return { socket: socket, send: handleSend };
 };

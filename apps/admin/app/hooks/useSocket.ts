@@ -1,7 +1,7 @@
 import { agentInfoQuery } from "@admin-queries/agent.query";
 import { Message } from "@repo/chat/schema";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 export type SocketListners = {
   ACTIVITY?: (activity: Message) => void;
@@ -26,5 +26,12 @@ export const useSocket = (listeners?: SocketListners) => {
     };
   }, [socket, listeners]);
 
-  return socket;
+  const handleSend = useCallback(
+    (message: unknown) => {
+      socket?.send(JSON.stringify(message));
+    },
+    [socket]
+  );
+
+  return { socket: socket, send: handleSend };
 };
