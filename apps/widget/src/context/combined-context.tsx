@@ -1,7 +1,8 @@
 import { cn } from "@repo/ui/lib/utils";
 import { Outlet } from "@tanstack/react-router";
 import ChatIconCom from "@widget-components/chat-icon";
-import { useSyncParent } from "@widget-hook/sync";
+import ChatSocketProvider from "@widget-components/ChatSocketProvider";
+import { useSyncParent } from "@widget-hooks/sync";
 import { FC } from "react";
 import styles from "./combined.module.scss";
 import { useWidget } from "./widget-context";
@@ -19,6 +20,7 @@ const CombindedContext: FC<ICombindedContextProps> = () => {
   return (
     <>
       <div className="h-full overflow-hidden">
+        <ChatSocketProvider />
         <div
           className="h-full pl-2 pt-2"
           style={{

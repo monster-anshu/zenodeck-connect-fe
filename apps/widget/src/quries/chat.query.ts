@@ -1,10 +1,27 @@
 import { Chat } from "@repo/chat/schema";
 import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
 import { ChatService } from "@widget-service/chat.service";
+import ReconnectingWebSocket from "reconnecting-websocket";
+
+let socket: ReconnectingWebSocket;
 
 export const chatListQuery = queryOptions({
   queryKey: ["chats"],
-  queryFn: ChatService.list,
+  queryFn: async () => {
+    const res = await ChatService.list();
+    socket =
+      socket ||
+      new ReconnectingWebSocket(res.socketUrl + "?token=" + res.authToken, [], {
+        connectionTimeout: 1000 * 60,
+        maxRetries: 3,
+      });
+
+    return {
+      customer: res.customer,
+      chats: res.chats,
+      socket: socket,
+    };
+  },
 });
 
 export const messagesQuery = (chatId: string, customerId: string) =>

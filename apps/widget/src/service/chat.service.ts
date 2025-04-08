@@ -44,6 +44,8 @@ export class ChatService {
 
 type ListResponse = {
   isSuccess: boolean;
+  socketUrl: string;
+  authToken: string;
   customer: {
     name: string;
     emailId: string;
