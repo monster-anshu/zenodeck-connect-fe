@@ -1,5 +1,6 @@
 import { Avatar } from "@repo/ui/components/avatar";
 import { Button } from "@repo/ui/components/button";
+import { cn } from "@repo/ui/lib/utils";
 import { FC } from "react";
 import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
@@ -40,7 +41,7 @@ const Chats: FC<IChatsProps> = ({
           background: config.backgroundColor,
         }}
       >
-        {chats.map(({ assignee, _id, lastMessageInfo }) => {
+        {chats.map(({ assignee, _id, lastMessageInfo, unreadCount = 0 }) => {
           const message = lastMessageInfo?.message;
           const formattedTime = lastMessageInfo?.activityTimestamp
             ? getFormattedTimeDifference(
@@ -57,9 +58,28 @@ const Chats: FC<IChatsProps> = ({
               <div className="row-span-2">
                 <Avatar>{assignee?.name}</Avatar>
               </div>
-              <p className="line-clamp-1 text-sm font-medium">{message}</p>
+              <div className="flex">
+                <p
+                  className={cn(
+                    "line-clamp-1 flex-1 text-sm",
+                    unreadCount ? "font-medium" : "font-normal"
+                  )}
+                >
+                  {message}
+                </p>
+                {(unreadCount || 0) > 0 && (
+                  <p className="bg-primary text-primary-foreground grid h-4 w-4 place-items-center rounded-full text-[10px] leading-none">
+                    {unreadCount}
+                  </p>
+                )}
+              </div>
               <div className="row-span-2"></div>
-              <p className="text-foreground/60 line-clamp-1 flex gap-0.5 text-xs">
+              <p
+                className={cn(
+                  "line-clamp-1 flex gap-0.5 text-xs",
+                  unreadCount ? "text-foreground/80" : "text-foreground/60"
+                )}
+              >
                 <span>{assignee?.name}</span>
                 <span>|</span>
                 <span>{formattedTime}</span>

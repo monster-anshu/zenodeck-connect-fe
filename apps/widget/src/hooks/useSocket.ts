@@ -1,5 +1,6 @@
 import { Message } from "@repo/chat/schema";
 import { useQuery } from "@tanstack/react-query";
+import { useWidget } from "@widget-context/widget-context";
 import { chatListQuery } from "@widget-quries/chat.query";
 import { useEffect } from "react";
 
@@ -8,7 +9,12 @@ export type SocketListners = {
 };
 
 export const useSocket = (listeners?: SocketListners) => {
-  const { data } = useQuery(chatListQuery);
+  const { token } = useWidget();
+
+  const { data } = useQuery({
+    ...chatListQuery,
+    enabled: Boolean(token),
+  });
   const socket = data?.socket;
 
   useEffect(() => {

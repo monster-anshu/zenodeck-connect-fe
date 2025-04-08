@@ -22,6 +22,7 @@ export const chatListQuery = queryOptions({
       socket: socket,
     };
   },
+  refetchOnMount: false,
 });
 
 export const messagesQuery = (chatId: string, customerId: string) =>

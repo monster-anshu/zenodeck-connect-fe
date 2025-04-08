@@ -104,7 +104,7 @@ export const ChatSchema = z.object({
   assignee: AssigneeSchema.nullish(),
   customerId: z.string(),
   lastMessageInfo: LastActivity.nullish(),
-  unreadCount: z.number().nullish(),
+  unreadCount: z.number().optional(),
   status: z.string().nullish(),
   customer: CustomerSchema.nullish(),
 });

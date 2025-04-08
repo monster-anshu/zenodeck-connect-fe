@@ -12,7 +12,11 @@ export const Route = createFileRoute("/chats")({
 function RouteComponent() {
   const router = useRouter();
   const { token, setValue, clientId } = useWidget();
-  const { data } = useQuery({ ...chatListQuery, enabled: Boolean(token) });
+  const { data } = useQuery({
+    ...chatListQuery,
+    enabled: Boolean(token),
+    refetchOnMount: true,
+  });
 
   const { mutate, isPending } = useMutation({
     mutationFn: (body: Record<string, unknown>) =>

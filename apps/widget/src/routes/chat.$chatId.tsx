@@ -17,7 +17,6 @@ function RouteComponent() {
   const chatList = useQuery({
     ...chatListQuery,
     enabled: Boolean(token),
-    refetchOnMount: false,
   });
 
   const { chatId } = Route.useParams();

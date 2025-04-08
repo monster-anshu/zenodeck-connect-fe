@@ -11,7 +11,10 @@ export const Route = createFileRoute("/")({
 function App() {
   const router = useRouter();
   const { token } = useWidget();
-  const { data } = useQuery({ ...chatListQuery, enabled: Boolean(token) });
+  const { data } = useQuery({
+    ...chatListQuery,
+    enabled: Boolean(token),
+  });
 
   return (
     <Home
