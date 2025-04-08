@@ -38,18 +38,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body
-        className="grid h-dvh"
-        style={{
-          gridTemplateColumns: "auto auto 1fr",
-          gridTemplateRows: "auto 1fr auto",
-        }}
-      >
+      <body>
         <ReactQueryProvider>
           <AuthProvider>
-            <Sidebar />
-            <GlobalHeader />
-            <main className="col-span-2 overflow-auto">{children}</main>
+            <div
+              className="grid h-dvh"
+              style={{
+                gridTemplateColumns: "auto auto 1fr",
+                gridTemplateRows: "auto 1fr auto",
+              }}
+            >
+              <Sidebar />
+              <GlobalHeader />
+              <main className="col-span-2 overflow-auto">{children}</main>
+            </div>
           </AuthProvider>
         </ReactQueryProvider>
         <ScrollRestoration />
