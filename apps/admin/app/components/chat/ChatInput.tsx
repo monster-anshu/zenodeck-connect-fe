@@ -1,9 +1,11 @@
 import { queryClient } from "@admin-provider/react-query";
+import { agentInfoQuery } from "@admin-queries/agent.query";
 import { messagesQuery } from "@admin-queries/chat.query";
 import { ChatService, SendRequest } from "@admin-services/chat.service";
+import { Message } from "@repo/chat/schema";
 import { Button } from "@repo/ui/components/button";
 import { Textarea } from "@repo/ui/components/textarea";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { produce } from "immer";
 import { FC, useState } from "react";
 
@@ -14,18 +16,56 @@ type IChatInputProps = {
 
 const ChatInput: FC<IChatInputProps> = ({ chatId, userId }) => {
   const query = messagesQuery(chatId, userId);
+  const { data: agentData } = useQuery(agentInfoQuery);
+  const agent = agentData?.agentInfo;
 
   const [text, setText] = useState("");
 
   const { mutate } = useMutation({
-    mutationFn: (body: SendRequest) => ChatService.send(chatId, body),
-    onSuccess: (data) => {
+    onMutate(variables) {
+      if (!agent) return null;
+      const key = Math.random() + "";
+      const activity: Message = {
+        _id: key,
+        agent: {
+          firstName: agent.firstName,
+          lastName: agent.lastName,
+          profilePic: agent.profilePic,
+        },
+        chatId: chatId,
+        from: {
+          type: "AGENT",
+          userId: userId,
+        },
+        messageData: variables,
+        status: "PENDING",
+        timestamp: new Date().toString(),
+        type: "MESSAGE",
+      };
       queryClient.setQueryData(query.queryKey, (curr) => {
         if (!curr) return;
         const update = produce(curr, (draft) => {
           const firstPage = draft.pages[0];
           if (!firstPage) {
             return;
+          }
+          firstPage.activities[activity._id] = activity;
+        });
+        return update;
+      });
+      return activity;
+    },
+    mutationFn: (body: SendRequest) => ChatService.send(chatId, body),
+    onSuccess: (data, _, old) => {
+      queryClient.setQueryData(query.queryKey, (curr) => {
+        if (!curr) return;
+        const update = produce(curr, (draft) => {
+          const firstPage = draft.pages[0];
+          if (!firstPage) {
+            return;
+          }
+          if (old) {
+            delete firstPage.activities[old._id];
           }
           firstPage.activities[data.activity._id] = data.activity;
         });

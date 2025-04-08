@@ -35,7 +35,8 @@ const MessageMetaSchema = z.object({
 });
 
 const AgentSchema = z.object({
-  name: z.string().nullish(),
+  firstName: z.string().nullish(),
+  lastName: z.string().nullish(),
   profilePic: z.string().nullish(),
 });
 

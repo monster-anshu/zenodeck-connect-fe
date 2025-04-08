@@ -29,6 +29,7 @@ export type AgentInfo = {
   mobileNo: string;
   name: string;
   role: Role;
+  profilePic?: string;
 };
 
 export type Role = {
