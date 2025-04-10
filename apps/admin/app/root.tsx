@@ -29,6 +29,12 @@ export const links: Route.LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
 ];
 
+export const meta: Route.MetaFunction = () => [
+  {
+    title: "Zenodeck Connect",
+  },
+];
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
