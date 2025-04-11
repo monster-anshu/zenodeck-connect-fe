@@ -5,6 +5,11 @@ export class ChannelService {
     const { data } = await client.get<ListResponse>("/channel");
     return data;
   }
+
+  static async get(id: string) {
+    const { data } = await client.get(`/channel/${id}`);
+    return data;
+  }
 }
 
 export type ListResponse = {
