@@ -5,3 +5,9 @@ export const channelQuery = queryOptions({
   queryKey: ["channel"],
   queryFn: ChannelService.list,
 });
+
+export const channelIdByQuery = (id: string) =>
+  queryOptions({
+    queryKey: ["channel", id],
+    queryFn: () => ChannelService.get(id),
+  });

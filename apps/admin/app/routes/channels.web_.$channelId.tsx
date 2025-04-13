@@ -1,28 +1,35 @@
+import General from "@admin-components/channel/web/General";
 import WebChannelSidebar from "@admin-components/channel/web/WebChannelSidebar";
+import { queryClient } from "@admin-provider/react-query";
+import { channelIdByQuery } from "@admin-queries/channel.query";
+import Chats from "@repo/chat/chats";
 import { config } from "@repo/chat/configration";
 import {
   ThemeContextProvider,
   useTheme,
 } from "@repo/chat/context/theme-context";
-import { FC, ReactNode } from "react";
-import { createPortal } from "react-dom";
-import { useSearchParams } from "react-router";
-
-import Chats from "@repo/chat/chats";
 import { sampleData } from "@repo/chat/data/messages";
 import Faqs from "@repo/chat/faqs";
 import Home from "@repo/chat/home";
 import Messages from "@repo/chat/messages";
 import PreChat from "@repo/chat/pre-chat";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { FC, ReactNode } from "react";
+import { ClientLoaderFunction, useParams, useSearchParams } from "react-router";
 
 type IChennelPageProps = {};
+
+export const clientLoader: ClientLoaderFunction = ({ params }) => {
+  const { channelId } = params;
+  queryClient.prefetchQuery(channelIdByQuery(channelId!));
+};
 
 const ChatWindow = ({ children }: { children: ReactNode }) => {
   const { cssVariables } = useTheme();
   return (
     <div
       style={cssVariables}
-      className="fixed right-5 top-5 h-[550px] max-h-[100dvh] w-96 overflow-auto rounded-3xl border bg-white shadow-lg"
+      className="h-full w-96 overflow-auto rounded-3xl border bg-white shadow-lg"
     >
       {children}
     </div>
@@ -30,6 +37,9 @@ const ChatWindow = ({ children }: { children: ReactNode }) => {
 };
 
 const ChennelPage: FC<IChennelPageProps> = () => {
+  const { channelId } = useParams();
+  const { data: channel } = useSuspenseQuery(channelIdByQuery(channelId!));
+
   const [searchParams] = useSearchParams();
 
   const tab = searchParams.get("tab");
@@ -64,16 +74,18 @@ const ChennelPage: FC<IChennelPageProps> = () => {
     );
   }
 
-  const component = (
-    <ThemeContextProvider theme={{ config }}>
-      <ChatWindow>{componentToUse || <Home />}</ChatWindow>
-    </ThemeContextProvider>
-  );
-
+  console.log(channel);
   return (
-    <div className="h-full">
+    <div className="grid h-full grid-cols-[auto_1fr_auto]">
       <WebChannelSidebar />
-      {createPortal(component, document.body)}
+      <div className="border-r p-6 text-sm">
+        <General />
+      </div>
+      <div className="h-full overflow-hidden p-4">
+        <ThemeContextProvider theme={{ config }}>
+          <ChatWindow>{componentToUse || <Home />}</ChatWindow>
+        </ThemeContextProvider>
+      </div>
     </div>
   );
 };
