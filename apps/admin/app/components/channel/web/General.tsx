@@ -1,14 +1,16 @@
+import { ChannelFormType } from "@admin-routes/channels.web_.$channelId";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@repo/ui/components/accordion";
-import { Input } from "@repo/ui/components/input";
-import { Label } from "@repo/ui/components/label";
-import React, { FC } from "react";
+import { FormComponent } from "@repo/ui/molecules/form-component";
+import { FC } from "react";
 
-type IGeneralProps = {};
+type IGeneralProps = {
+  control: ChannelFormType["control"];
+};
 
 const General: FC<IGeneralProps> = () => {
   return (
@@ -19,8 +21,7 @@ const General: FC<IGeneralProps> = () => {
         <AccordionItem value="item-1">
           <AccordionTrigger>Widget Details</AccordionTrigger>
           <AccordionContent className="px-2">
-            <Label className="mb-2 block">Name</Label>
-            <Input />
+            <FormComponent name={"name"} type="text" label="Name" />
           </AccordionContent>
         </AccordionItem>
       </Accordion>

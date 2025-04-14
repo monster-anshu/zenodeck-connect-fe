@@ -2,6 +2,7 @@ import General from "@admin-components/channel/web/General";
 import WebChannelSidebar from "@admin-components/channel/web/WebChannelSidebar";
 import { queryClient } from "@admin-provider/react-query";
 import { channelIdByQuery } from "@admin-queries/channel.query";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Chats from "@repo/chat/chats";
 import { config } from "@repo/chat/configration";
 import {
@@ -13,9 +14,12 @@ import Faqs from "@repo/chat/faqs";
 import Home from "@repo/chat/home";
 import Messages from "@repo/chat/messages";
 import PreChat from "@repo/chat/pre-chat";
+import { Form } from "@repo/ui/components/form";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { FC, ReactNode } from "react";
+import { useForm, UseFormReturn } from "react-hook-form";
 import { ClientLoaderFunction, useParams, useSearchParams } from "react-router";
+import { z } from "zod";
 
 type IChennelPageProps = {};
 
@@ -36,11 +40,28 @@ const ChatWindow = ({ children }: { children: ReactNode }) => {
   );
 };
 
+const schema = z.object({
+  name: z.string().nonempty(),
+});
+
+type ChannelFormValues = z.infer<typeof schema>;
+export type ChannelFormType = UseFormReturn<
+  ChannelFormValues,
+  unknown,
+  ChannelFormValues
+>;
+
 const ChennelPage: FC<IChennelPageProps> = () => {
   const { channelId } = useParams();
-  const { data: channel } = useSuspenseQuery(channelIdByQuery(channelId!));
-
   const [searchParams] = useSearchParams();
+
+  const { data: channel } = useSuspenseQuery(channelIdByQuery(channelId!));
+  const form = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      name: channel.name,
+    },
+  });
 
   const tab = searchParams.get("tab");
   let componentToUse;
@@ -74,13 +95,14 @@ const ChennelPage: FC<IChennelPageProps> = () => {
     );
   }
 
-  console.log(channel);
   return (
     <div className="grid h-full grid-cols-[auto_1fr_auto]">
       <WebChannelSidebar />
-      <div className="border-r p-6 text-sm">
-        <General />
-      </div>
+      <Form {...form}>
+        <div className="border-r p-6 text-sm">
+          <General control={form.control} />
+        </div>
+      </Form>
       <div className="h-full overflow-hidden p-4">
         <ThemeContextProvider theme={{ config }}>
           <ChatWindow>{componentToUse || <Home />}</ChatWindow>
