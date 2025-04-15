@@ -33,7 +33,7 @@ const ChatWindow = ({ children }: { children: ReactNode }) => {
   return (
     <div
       style={cssVariables}
-      className="h-full w-96 overflow-auto rounded-3xl border bg-white shadow-lg"
+      className="h-[560px] w-96 overflow-auto rounded-3xl border bg-white shadow-lg"
     >
       {children}
     </div>
@@ -103,7 +103,7 @@ const ChennelPage: FC<IChennelPageProps> = () => {
           <General control={form.control} />
         </div>
       </Form>
-      <div className="h-full overflow-hidden p-4">
+      <div className="overflow-hidden p-4">
         <ThemeContextProvider theme={{ config }}>
           <ChatWindow>{componentToUse || <Home />}</ChatWindow>
         </ThemeContextProvider>
