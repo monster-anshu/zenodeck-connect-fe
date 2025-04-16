@@ -22,7 +22,12 @@ const Home: FC<IHomeProps> = ({ onSendMessage }) => {
   };
 
   return (
-    <main className="grid h-full grid-rows-[auto_1fr_auto] rounded-3xl">
+    <main
+      className="grid h-full grid-rows-[auto_1fr_auto] rounded-3xl"
+      style={{
+        background: config.chatWindow.backgroundColor,
+      }}
+    >
       <Header>
         <p className="line-clamp-2 text-3xl font-medium leading-10">
           {i18n("greeting")}
