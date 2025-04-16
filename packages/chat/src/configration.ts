@@ -15,6 +15,7 @@ export const deafultLanguage = {
     preChatTitle: "Welcome! How can we help?",
     replyExpectation: "Waiting time less than 1 minute",
     ticketButton: "Create new ticket",
+    ticketTitle: "Tickets",
   },
 };
 

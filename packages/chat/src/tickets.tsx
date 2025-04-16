@@ -3,9 +3,9 @@ import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
 import Navigation from "./navigation";
 
-type IFaqsProps = {};
+type ITicketsProps = {};
 
-const Faqs: FC<IFaqsProps> = () => {
+const Tickets: FC<ITicketsProps> = () => {
   const { i18n, config } = useTheme();
   return (
     <main
@@ -15,7 +15,7 @@ const Faqs: FC<IFaqsProps> = () => {
       className="grid h-full grid-rows-[auto_1fr_auto] rounded-3xl"
     >
       <Header>
-        <p className="text-center text-xl font-medium">{i18n("faqTitle")}</p>
+        <p className="text-center text-xl font-medium">{i18n("ticketTitle")}</p>
       </Header>
       <div
         className="-mt-6 space-y-2 overflow-auto rounded-t-3xl px-4 py-4"
@@ -23,11 +23,11 @@ const Faqs: FC<IFaqsProps> = () => {
           background: config.backgroundColor,
         }}
       >
-        <p>FAQ Page</p>
+        <p>Tickets Page</p>
       </div>
       <Navigation />
     </main>
   );
 };
 
-export default Faqs;
+export default Tickets;
