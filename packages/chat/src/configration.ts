@@ -132,11 +132,11 @@ export const config = {
       name: "CHATS",
     },
     {
-      enable: false,
+      enable: true,
       name: "FAQS",
     },
     {
-      enable: false,
+      enable: true,
       name: "TICKETS",
     },
   ],

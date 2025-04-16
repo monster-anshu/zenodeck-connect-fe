@@ -1,13 +1,14 @@
 import { FC } from "react";
 import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
+import Navigation from "./navigation";
 
 type IFaqsProps = {};
 
 const Faqs: FC<IFaqsProps> = () => {
   const { i18n, config } = useTheme();
   return (
-    <main className="grid h-full grid-rows-[auto_1fr] rounded-3xl">
+    <main className="grid h-full grid-rows-[auto_1fr_auto] rounded-3xl">
       <Header>
         <p className="text-center text-xl font-medium">{i18n("faqTitle")}</p>
       </Header>
@@ -19,6 +20,7 @@ const Faqs: FC<IFaqsProps> = () => {
       >
         <p>FAQ Page</p>
       </div>
+      <Navigation />
     </main>
   );
 };

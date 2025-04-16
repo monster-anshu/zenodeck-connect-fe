@@ -4,6 +4,7 @@ import { cn } from "@repo/ui/lib/utils";
 import { FC } from "react";
 import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
+import Navigation from "./navigation";
 import { Chat } from "./schema";
 import { getFormattedTimeDifference } from "./utils/time";
 
@@ -25,7 +26,7 @@ const Chats: FC<IChatsProps> = ({
   const { i18n, config } = useTheme();
   return (
     <main
-      className="grid h-full grid-rows-[auto_1fr_auto] rounded-3xl"
+      className="grid h-full grid-rows-[auto_1fr_auto_auto] rounded-3xl"
       style={{
         background: config.chatWindow.backgroundColor,
       }}
@@ -90,7 +91,7 @@ const Chats: FC<IChatsProps> = ({
       </div>
       <Button
         onClick={onSend}
-        className="mx-4 my-2 rounded-lg py-5"
+        className="mx-4 mt-2 rounded-lg py-5"
         loading={isLoading}
         style={{
           color: config.multiChat.submitButton.textColor,
@@ -99,6 +100,7 @@ const Chats: FC<IChatsProps> = ({
       >
         {i18n("multiChatButton")}
       </Button>
+      <Navigation />
     </main>
   );
 };

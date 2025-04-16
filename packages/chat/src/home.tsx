@@ -5,6 +5,7 @@ import SendMessageBlock from "./blocks/send-message-block";
 import TicketBlock from "./blocks/ticket-block";
 import Header from "./components/header";
 import { useTheme } from "./context/theme-context";
+import Navigation from "./navigation";
 
 type IHomeProps = {
   onSendMessage?: () => void;
@@ -21,7 +22,7 @@ const Home: FC<IHomeProps> = ({ onSendMessage }) => {
   };
 
   return (
-    <main className="grid h-full grid-rows-[auto_1fr] rounded-3xl">
+    <main className="grid h-full grid-rows-[auto_1fr_auto] rounded-3xl">
       <Header>
         <p className="line-clamp-2 text-3xl font-medium leading-10">
           {i18n("greeting")}
@@ -42,6 +43,7 @@ const Home: FC<IHomeProps> = ({ onSendMessage }) => {
           return <React.Fragment key={block.key}>{component}</React.Fragment>;
         })}
       </div>
+      <Navigation />
     </main>
   );
 };

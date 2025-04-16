@@ -6,6 +6,7 @@ type Theme = {
   config: Configration;
   actions?: {
     onClose?: () => void;
+    onNavigation?: (name: string) => void;
   };
 };
 
