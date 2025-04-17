@@ -8,9 +8,7 @@ import {
 import { FormComponent } from "@repo/ui/molecules/form-component";
 import { FC } from "react";
 
-type IGeneralProps = {
-  control: ChannelFormType["control"];
-};
+type IGeneralProps = {};
 
 const General: FC<IGeneralProps> = () => {
   return (

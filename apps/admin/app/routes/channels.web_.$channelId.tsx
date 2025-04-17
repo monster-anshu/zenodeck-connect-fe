@@ -1,3 +1,4 @@
+import EmbeddCode from "@admin-components/channel/web/EmbeddCode";
 import General from "@admin-components/channel/web/General";
 import WebChannelSidebar from "@admin-components/channel/web/WebChannelSidebar";
 import { queryClient } from "@admin-provider/react-query";
@@ -14,6 +15,7 @@ import Faqs from "@repo/chat/faqs";
 import Home from "@repo/chat/home";
 import Messages from "@repo/chat/messages";
 import PreChat from "@repo/chat/pre-chat";
+import Tickets from "@repo/chat/tickets";
 import { Form } from "@repo/ui/components/form";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { FC, ReactNode } from "react";
@@ -65,12 +67,30 @@ const ChennelPage: FC<IChennelPageProps> = () => {
 
   const tab = searchParams.get("tab");
   let componentToUse;
+  let mainContent;
 
-  if (tab === "home") {
+  if (tab === "general") {
+    mainContent = <General />;
+    componentToUse = (
+      <Messages
+        assignee={sampleData.assignee}
+        chat={sampleData.chat}
+        messages={sampleData.messages}
+      />
+    );
+  }
+  if (tab === "appearance") {
     componentToUse = <Home />;
   }
   if (tab === "pre-chat") {
     componentToUse = <PreChat />;
+  }
+  if (tab === "embed") {
+    mainContent = <EmbeddCode clientId={channel.clientId} />;
+  }
+
+  if (tab === "home") {
+    componentToUse = <Home />;
   }
   if (tab === "chats") {
     componentToUse = (
@@ -85,29 +105,25 @@ const ChennelPage: FC<IChennelPageProps> = () => {
   if (tab === "faq") {
     componentToUse = <Faqs />;
   }
-  if (tab === "general") {
-    componentToUse = (
-      <Messages
-        assignee={sampleData.assignee}
-        chat={sampleData.chat}
-        messages={sampleData.messages}
-      />
-    );
+  if (tab === "ticket") {
+    componentToUse = <Tickets />;
   }
 
   return (
     <div className="grid h-full grid-cols-[auto_1fr_auto]">
       <WebChannelSidebar />
       <Form {...form}>
-        <div className="border-r p-6 text-sm">
-          <General control={form.control} />
-        </div>
+        <div className="border-r p-6 text-sm">{mainContent}</div>
       </Form>
-      <div className="overflow-hidden p-4">
-        <ThemeContextProvider theme={{ config }}>
-          <ChatWindow>{componentToUse || <Home />}</ChatWindow>
-        </ThemeContextProvider>
-      </div>
+      {componentToUse ? (
+        <div className="overflow-hidden p-4">
+          <ThemeContextProvider theme={{ config }}>
+            <ChatWindow>{componentToUse}</ChatWindow>
+          </ThemeContextProvider>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };
