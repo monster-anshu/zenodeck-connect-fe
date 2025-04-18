@@ -18,7 +18,7 @@ import PreChat from "@repo/chat/pre-chat";
 import Tickets from "@repo/chat/tickets";
 import { Form } from "@repo/ui/components/form";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import { useForm, UseFormReturn } from "react-hook-form";
 import { ClientLoaderFunction, useParams, useSearchParams } from "react-router";
 import { z } from "zod";
@@ -46,6 +46,17 @@ const schema = z.object({
   name: z.string().nonempty(),
 });
 
+const validTabs = [
+  "general",
+  "appearance",
+  "pre-chat",
+  "embed",
+  "home",
+  "chats",
+  "fqs",
+  "ticket",
+] as const;
+
 type ChannelFormValues = z.infer<typeof schema>;
 export type ChannelFormType = UseFormReturn<
   ChannelFormValues,
@@ -55,7 +66,7 @@ export type ChannelFormType = UseFormReturn<
 
 const ChennelPage: FC<IChennelPageProps> = () => {
   const { channelId } = useParams();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const { data: channel } = useSuspenseQuery(channelIdByQuery(channelId!));
   const form = useForm({
@@ -66,48 +77,63 @@ const ChennelPage: FC<IChennelPageProps> = () => {
   });
 
   const tab = searchParams.get("tab");
-  let componentToUse;
-  let mainContent;
 
-  if (tab === "general") {
-    mainContent = <General />;
-    componentToUse = (
-      <Messages
-        assignee={sampleData.assignee}
-        chat={sampleData.chat}
-        messages={sampleData.messages}
-      />
-    );
-  }
-  if (tab === "appearance") {
-    componentToUse = <Home />;
-  }
-  if (tab === "pre-chat") {
-    componentToUse = <PreChat />;
-  }
-  if (tab === "embed") {
-    mainContent = <EmbeddCode clientId={channel.clientId} />;
-  }
+  useEffect(() => {
+    if (!validTabs.includes(tab as never)) {
+      setSearchParams(
+        (curr) => {
+          curr.set("tab", validTabs[0]!);
+          return curr;
+        },
+        { replace: true }
+      );
+    }
+  }, [tab]);
 
-  if (tab === "home") {
-    componentToUse = <Home />;
-  }
-  if (tab === "chats") {
-    componentToUse = (
-      <Chats
-        chats={Array.from({ length: 100 }).map((_, i) => ({
-          ...sampleData.chat,
-          _id: i + "",
-        }))}
-      />
-    );
-  }
-  if (tab === "faq") {
-    componentToUse = <Faqs />;
-  }
-  if (tab === "ticket") {
-    componentToUse = <Tickets />;
-  }
+  const getTabContent = (): [ReactNode, ReactNode] => {
+    if (tab === "general") {
+      return [
+        <General />,
+        <Messages
+          assignee={sampleData.assignee}
+          chat={sampleData.chat}
+          messages={sampleData.messages}
+        />,
+      ];
+    }
+    if (tab === "appearance") {
+      return [null, <Home />];
+    }
+    if (tab === "pre-chat") {
+      return [null, <PreChat />];
+    }
+    if (tab === "embed") {
+      return [<EmbeddCode clientId={channel.clientId} />, null];
+    }
+    if (tab === "home") {
+      return [null, <Home />];
+    }
+    if (tab === "chats") {
+      return [
+        null,
+        <Chats
+          chats={Array.from({ length: 100 }).map((_, i) => ({
+            ...sampleData.chat,
+            _id: i + "",
+          }))}
+        />,
+      ];
+    }
+    if (tab === "faq") {
+      return [null, <Faqs />];
+    }
+    if (tab === "ticket") {
+      return [null, <Tickets />];
+    }
+    return [null, null];
+  };
+
+  const [mainContent, componentToUse] = getTabContent();
 
   return (
     <div className="grid h-full grid-cols-[auto_1fr_auto]">

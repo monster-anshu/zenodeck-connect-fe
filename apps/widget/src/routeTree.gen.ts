@@ -10,154 +10,160 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as TicketImport } from './routes/ticket'
-import { Route as PreChatImport } from './routes/pre-chat'
-import { Route as FaqImport } from './routes/faq'
-import { Route as ChatsImport } from './routes/chats'
-import { Route as IndexImport } from './routes/index'
-import { Route as ChatChatIdImport } from './routes/chat.$chatId'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as ChatChatIdImport } from "./routes/chat.$chatId";
+import { Route as ChatsImport } from "./routes/chats";
+import { Route as FaqImport } from "./routes/faq";
+import { Route as IndexImport } from "./routes/index";
+import { Route as PreChatImport } from "./routes/pre-chat";
+import { Route as TicketImport } from "./routes/ticket";
 
 // Create/Update Routes
 
 const TicketRoute = TicketImport.update({
-  id: '/ticket',
-  path: '/ticket',
+  id: "/ticket",
+  path: "/ticket",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const PreChatRoute = PreChatImport.update({
-  id: '/pre-chat',
-  path: '/pre-chat',
+  id: "/pre-chat",
+  path: "/pre-chat",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const FaqRoute = FaqImport.update({
-  id: '/faq',
-  path: '/faq',
+  id: "/faq",
+  path: "/faq",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ChatsRoute = ChatsImport.update({
-  id: '/chats',
-  path: '/chats',
+  id: "/chats",
+  path: "/chats",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ChatChatIdRoute = ChatChatIdImport.update({
-  id: '/chat/$chatId',
-  path: '/chat/$chatId',
+  id: "/chat/$chatId",
+  path: "/chat/$chatId",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/chats': {
-      id: '/chats'
-      path: '/chats'
-      fullPath: '/chats'
-      preLoaderRoute: typeof ChatsImport
-      parentRoute: typeof rootRoute
-    }
-    '/faq': {
-      id: '/faq'
-      path: '/faq'
-      fullPath: '/faq'
-      preLoaderRoute: typeof FaqImport
-      parentRoute: typeof rootRoute
-    }
-    '/pre-chat': {
-      id: '/pre-chat'
-      path: '/pre-chat'
-      fullPath: '/pre-chat'
-      preLoaderRoute: typeof PreChatImport
-      parentRoute: typeof rootRoute
-    }
-    '/ticket': {
-      id: '/ticket'
-      path: '/ticket'
-      fullPath: '/ticket'
-      preLoaderRoute: typeof TicketImport
-      parentRoute: typeof rootRoute
-    }
-    '/chat/$chatId': {
-      id: '/chat/$chatId'
-      path: '/chat/$chatId'
-      fullPath: '/chat/$chatId'
-      preLoaderRoute: typeof ChatChatIdImport
-      parentRoute: typeof rootRoute
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/chats": {
+      id: "/chats";
+      path: "/chats";
+      fullPath: "/chats";
+      preLoaderRoute: typeof ChatsImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/faq": {
+      id: "/faq";
+      path: "/faq";
+      fullPath: "/faq";
+      preLoaderRoute: typeof FaqImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/pre-chat": {
+      id: "/pre-chat";
+      path: "/pre-chat";
+      fullPath: "/pre-chat";
+      preLoaderRoute: typeof PreChatImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/ticket": {
+      id: "/ticket";
+      path: "/ticket";
+      fullPath: "/ticket";
+      preLoaderRoute: typeof TicketImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/chat/$chatId": {
+      id: "/chat/$chatId";
+      path: "/chat/$chatId";
+      fullPath: "/chat/$chatId";
+      preLoaderRoute: typeof ChatChatIdImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/chats': typeof ChatsRoute
-  '/faq': typeof FaqRoute
-  '/pre-chat': typeof PreChatRoute
-  '/ticket': typeof TicketRoute
-  '/chat/$chatId': typeof ChatChatIdRoute
+  "/": typeof IndexRoute;
+  "/chats": typeof ChatsRoute;
+  "/faq": typeof FaqRoute;
+  "/pre-chat": typeof PreChatRoute;
+  "/ticket": typeof TicketRoute;
+  "/chat/$chatId": typeof ChatChatIdRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/chats': typeof ChatsRoute
-  '/faq': typeof FaqRoute
-  '/pre-chat': typeof PreChatRoute
-  '/ticket': typeof TicketRoute
-  '/chat/$chatId': typeof ChatChatIdRoute
+  "/": typeof IndexRoute;
+  "/chats": typeof ChatsRoute;
+  "/faq": typeof FaqRoute;
+  "/pre-chat": typeof PreChatRoute;
+  "/ticket": typeof TicketRoute;
+  "/chat/$chatId": typeof ChatChatIdRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/chats': typeof ChatsRoute
-  '/faq': typeof FaqRoute
-  '/pre-chat': typeof PreChatRoute
-  '/ticket': typeof TicketRoute
-  '/chat/$chatId': typeof ChatChatIdRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexRoute;
+  "/chats": typeof ChatsRoute;
+  "/faq": typeof FaqRoute;
+  "/pre-chat": typeof PreChatRoute;
+  "/ticket": typeof TicketRoute;
+  "/chat/$chatId": typeof ChatChatIdRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/chats' | '/faq' | '/pre-chat' | '/ticket' | '/chat/$chatId'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/chats' | '/faq' | '/pre-chat' | '/ticket' | '/chat/$chatId'
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths:
+    | "/"
+    | "/chats"
+    | "/faq"
+    | "/pre-chat"
+    | "/ticket"
+    | "/chat/$chatId";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/" | "/chats" | "/faq" | "/pre-chat" | "/ticket" | "/chat/$chatId";
   id:
-    | '__root__'
-    | '/'
-    | '/chats'
-    | '/faq'
-    | '/pre-chat'
-    | '/ticket'
-    | '/chat/$chatId'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/chats"
+    | "/faq"
+    | "/pre-chat"
+    | "/ticket"
+    | "/chat/$chatId";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  ChatsRoute: typeof ChatsRoute
-  FaqRoute: typeof FaqRoute
-  PreChatRoute: typeof PreChatRoute
-  TicketRoute: typeof TicketRoute
-  ChatChatIdRoute: typeof ChatChatIdRoute
+  IndexRoute: typeof IndexRoute;
+  ChatsRoute: typeof ChatsRoute;
+  FaqRoute: typeof FaqRoute;
+  PreChatRoute: typeof PreChatRoute;
+  TicketRoute: typeof TicketRoute;
+  ChatChatIdRoute: typeof ChatChatIdRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -167,11 +173,11 @@ const rootRouteChildren: RootRouteChildren = {
   PreChatRoute: PreChatRoute,
   TicketRoute: TicketRoute,
   ChatChatIdRoute: ChatChatIdRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {

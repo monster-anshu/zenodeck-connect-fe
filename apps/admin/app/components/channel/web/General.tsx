@@ -1,4 +1,3 @@
-import { ChannelFormType } from "@admin-routes/channels.web_.$channelId";
 import {
   Accordion,
   AccordionContent,
