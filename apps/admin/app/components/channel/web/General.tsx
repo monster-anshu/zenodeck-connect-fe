@@ -14,12 +14,20 @@ const General: FC<IGeneralProps> = () => {
     <div>
       <p className="font-medium">General Settings</p>
       <p className="text-xs">Customize your initial settings for your widget</p>
-      <Accordion type="single" collapsible>
-        <AccordionItem value="item-1">
+      <Accordion
+        type="multiple"
+        className="[&_[role=region][data-state=open]]:overflow-hidden"
+        defaultValue={["details", "navigation"]}
+      >
+        <AccordionItem value="details">
           <AccordionTrigger>Widget Details</AccordionTrigger>
-          <AccordionContent className="px-2">
+          <AccordionContent className="px-1">
             <FormComponent name={"name"} type="text" label="Name" />
           </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="navigation">
+          <AccordionTrigger>Manage navigation menu</AccordionTrigger>
+          <AccordionContent className="px-1">Navigation dnd</AccordionContent>
         </AccordionItem>
       </Accordion>
     </div>
