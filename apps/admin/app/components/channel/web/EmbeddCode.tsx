@@ -1,6 +1,7 @@
 import { WIDGET_URL } from "@admin-env";
 import { Button } from "@repo/ui/components/button";
-import React, { FC } from "react";
+import { FC } from "react";
+import { toast } from "sonner";
 
 type IEmbeddCodeProps = {
   clientId: string;
@@ -26,8 +27,12 @@ const EmbeddCode: FC<IEmbeddCodeProps> = ({ clientId }) => {
   const handleCopy = () => {
     navigator.clipboard
       .writeText(text)
-      .then(() => {})
-      .catch(() => {});
+      .then(() => {
+        toast.success("Copied to clipboard");
+      })
+      .catch(() => {
+        toast.success("Cloud not copy code");
+      });
   };
 
   return (
