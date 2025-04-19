@@ -1,3 +1,5 @@
+import type { ConfigrationZod } from "./cofing-zod";
+
 export const deafultLanguage = {
   code: "en",
   default: true,
@@ -19,15 +21,18 @@ export const deafultLanguage = {
   },
 };
 
-export const config = {
-  brandColor: "#ffffff",
+export type Configration = ConfigrationZod & {
+  i18n: (typeof deafultLanguage)[];
+};
+
+export const config: Configration = {
   primaryColor: "#B51F1F",
   backgroundColor: "#ffffff",
   textColor: "#000000",
   chatIcon: {
-    bottomSpacing: 56,
-    enable: true,
-    greetingPopUpInterval: 5,
+    // bottomSpacing: 56,
+    // enable: true,
+    // greetingPopUpInterval: 5,
     maximized: {
       backgroundColor: "#ffffff",
       icon: "https://assets.orufy.com/down_arrow2_757d373883.svg",
@@ -39,14 +44,14 @@ export const config = {
       iconColor: "#ffffff",
     },
     position: "RIGHT",
-    presentation: "SLIDE_UP",
-    sideSpacing: 16,
-    size: "STANDARD",
+    // presentation: "SLIDE_UP",
+    // sideSpacing: 16,
+    // size: "STANDARD",
   },
-  chatReplyExpectation: {
-    enable: true,
-    replyTime: "LESS_THAN_1_MINUTE",
-  },
+  // chatReplyExpectation: {
+  //   enable: true,
+  //   replyTime: "LESS_THAN_1_MINUTE",
+  // },
   chatWindow: {
     attachmentIcon: {
       color: "black",
@@ -70,7 +75,7 @@ export const config = {
       textColor: "black",
     },
     sendButton: {
-      backgorundColor: "#ffffff",
+      backgroundColor: "#ffffff",
       textColor: "#c2c2c2",
     },
     userChatbox: {
@@ -82,10 +87,8 @@ export const config = {
     backgroundColor:
       "linear-gradient(to top, rgb(228, 193, 255), rgb(128, 93, 207))",
     displayProfilePicture: true,
-    headerType: "LINEAR",
+    // headerType: "LINEAR",
     logo: "",
-    showFaqButton: true,
-    showFaqForCategories: [],
     showLogo: false,
     textColor: "#ffffff",
   },
@@ -93,12 +96,10 @@ export const config = {
     {
       enable: false,
       key: "HEADER",
-      label: "Last Message",
     },
     {
       enable: true,
       key: "LAST_MESSAGE",
-      label: "Last Message",
     },
     {
       enable: true,
@@ -107,12 +108,10 @@ export const config = {
     {
       enable: true,
       key: "FAQ",
-      label: "Show FAQs",
     },
     {
       enable: true,
       key: "TICKETS",
-      label: "Recent tickets",
     },
   ],
   i18n: [deafultLanguage],
@@ -126,19 +125,19 @@ export const config = {
   navigation: [
     {
       enable: true,
-      name: "HOME",
+      key: "HOME",
     },
     {
       enable: true,
-      name: "CHATS",
+      key: "CHATS",
     },
     {
       enable: true,
-      name: "FAQS",
+      key: "FAQS",
     },
     {
       enable: true,
-      name: "TICKETS",
+      key: "TICKETS",
     },
   ],
   preChat: {
@@ -148,8 +147,7 @@ export const config = {
       textColor: "#ffffff",
     },
   },
-  ticket: {
-    ticketCreateEnable: true,
-  },
+  // ticket: {
+  //   ticketCreateEnable: true,
+  // },
 };
-export type Configration = typeof config;

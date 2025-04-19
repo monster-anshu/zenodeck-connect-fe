@@ -41,12 +41,12 @@ const Navigation: FC<INavigationProps> = () => {
   return (
     <div className="m-4 mb-4 mt-2 flex items-center justify-center gap-10 rounded-2xl border px-6 py-3">
       {navigation.map((n) => {
-        const component = navigationComponents[n.name];
+        const component = navigationComponents[n.key];
         if (!component || !n.enable) return null;
         return (
           <button
             className="text-center"
-            onClick={() => actions?.onNavigation?.(n.name)}
+            onClick={() => actions?.onNavigation?.(n.key)}
           >
             <span className="mx-auto block w-fit text-lg">
               {component.icon}

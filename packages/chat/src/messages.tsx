@@ -74,7 +74,7 @@ const Messages: FC<IMessagesProps> = ({
         <button
           style={{
             color: config.chatWindow.sendButton.textColor,
-            background: config.chatWindow.sendButton.backgorundColor,
+            background: config.chatWindow.sendButton.backgroundColor,
           }}
           onClick={handleSend}
           className="min-h-[60px] rounded-xl border px-4 py-2"
