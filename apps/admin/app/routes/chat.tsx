@@ -1,3 +1,4 @@
+import EmptyChatIcon from "@admin-assets/svg/chat.svg";
 import ChatItem from "@admin-components/chat/ChatItem";
 import ChatSocketProvider from "@admin-components/chat/ChatSocketProvider";
 import { chatListQuery } from "@admin-queries/chat.query";
@@ -20,7 +21,19 @@ const ChatPage: FC<IChatPageProps> = () => {
         })}
       </div>
       <div className="bg-secondary">
-        <Outlet key={chatId} />
+        {chatId ? (
+          <Outlet key={chatId} />
+        ) : (
+          <div className="grid h-full w-full place-items-center">
+            <img
+              src={EmptyChatIcon}
+              alt="Chats"
+              width={200}
+              height={200}
+              className="mx-auto p-2"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
