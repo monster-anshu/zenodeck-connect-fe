@@ -30,7 +30,7 @@ const FormComponent = <Element extends FormElement<z.ZodAny>>({
         control={form.control}
         name={item.name.toString()}
         render={({ field }) => (
-          <FormItem className={cn("col-span-2", item.className)}>
+          <FormItem className={cn("col-span-2 space-y-1", item.className)}>
             <FormLabel>{item.label}</FormLabel>
             <FormControl>
               <Input
@@ -75,4 +75,5 @@ export type FormElement<T extends ZodSchema> = Record<string, unknown> & {
     | { type: "text" | "email" | "password"; regex?: RegExp }
     | { type: "file"; module?: string }
     | { type: "datetime-local"; min?: string; max?: string }
+    | { type: "color" }
   );

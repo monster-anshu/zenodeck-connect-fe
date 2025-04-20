@@ -36,9 +36,12 @@ const GlobalHeader: FC<IGlobalHeaderProps> = () => {
   }
 
   return (
-    <div className="col-span-2 border-b px-5 py-2">
-      <p className="font-medium">{active?.title}</p>
-      <p className="text-sm">{active?.subTitle}</p>
+    <div className="col-span-2 flex items-center gap-3 border-b px-5 py-2">
+      <div className="flex-1">
+        <p className="font-medium">{active?.title}</p>
+        <p className="text-foreground/60 text-xs">{active?.subTitle}</p>
+      </div>
+      <div id="header-portal"></div>
     </div>
   );
 };

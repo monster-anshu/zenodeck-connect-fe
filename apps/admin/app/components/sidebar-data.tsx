@@ -18,9 +18,12 @@ export const items = [
   },
   {
     label: "Channels",
+    title: "Channles",
+    subTitle:
+      "Create multiple web widgets for your websites, or storefront to allow customers to chat with your business",
     link: "/channels/web",
     icon: <FiServer />,
-    localtionHeader: true,
+    localtionHeader: false,
   },
   {
     label: "Settings",
