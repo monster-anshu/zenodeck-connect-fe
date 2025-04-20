@@ -27,6 +27,7 @@ const CreateWebChannelDialog: FC<ICreateWebChannelDialogProps> = ({
     resolver: zodResolver(schema),
     defaultValues: {
       name: "",
+      primaryColor: "#f31b1b",
     },
   });
   return (

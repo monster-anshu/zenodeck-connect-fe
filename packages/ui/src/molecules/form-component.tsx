@@ -56,6 +56,41 @@ const FormComponent = <Element extends FormElement<z.ZodAny>>({
     );
   }
 
+  if (item.type === "color") {
+    return (
+      <FormField
+        control={form.control}
+        name={item.name.toString()}
+        render={({ field }) => (
+          <FormItem className={cn("col-span-2 space-y-1", item.className)}>
+            <FormLabel>{item.label}</FormLabel>
+            <div className="flex min-h-9 items-center justify-between gap-2 rounded-md border px-3 py-1 shadow-sm">
+              <FormLabel>{field.value}</FormLabel>
+              <div className="relative">
+                <FormLabel
+                  className="block h-5 w-5 rounded-full"
+                  style={{
+                    background: field.value,
+                  }}
+                ></FormLabel>
+                <FormControl>
+                  <input
+                    {...item}
+                    placeholder={item.placeholder}
+                    type={item.type}
+                    {...field}
+                    className="sr-only"
+                    value={field.value || ""}
+                  />
+                </FormControl>
+              </div>
+            </div>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+    );
+  }
   return <div>Not Implemented</div>;
 };
 
