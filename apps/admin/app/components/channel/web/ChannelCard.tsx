@@ -12,7 +12,7 @@ import { LuEllipsisVertical } from "react-icons/lu";
 import { Link, useNavigate } from "react-router";
 
 type IChannelCardProps = {
-  channel: Channel;
+  channel: Omit<Channel, "customization">;
 };
 
 const ChannelCard: FC<IChannelCardProps> = ({ channel }) => {

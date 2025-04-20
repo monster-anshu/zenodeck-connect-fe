@@ -49,3 +49,10 @@ export const convertToVariable = (
   if (!color) return;
   return `${color.h} ${color.s} ${color.l}`;
 };
+
+export function getContrastingTextColorFromHSL({
+  l,
+}: ReturnType<typeof hexToHsl>) {
+  // If lightness is greater than 50%, use black text, else white
+  return l > 50 ? "#000000" : "#FFFFFF";
+}

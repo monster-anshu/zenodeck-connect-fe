@@ -144,8 +144,8 @@ const PreChat: FC<IPreChatProps> = ({
           <Button
             className="w-full rounded-lg py-5"
             style={{
-              color: config.preChat.submitButton.textColor,
-              background: config.preChat.submitButton.backgroundColor,
+              color: config.primaryTextColor,
+              background: config.primaryColor,
             }}
             loading={loading}
             type="submit"

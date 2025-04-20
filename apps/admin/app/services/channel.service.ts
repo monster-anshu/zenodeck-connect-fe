@@ -1,3 +1,5 @@
+import { ConfigrationZod } from "@repo/chat/cofing-zod";
+import { DeepPartial } from "react-hook-form";
 import { client } from "./client";
 
 export class ChannelService {
@@ -10,14 +12,30 @@ export class ChannelService {
     const { data } = await client.get<GetResponse>(`/channel/${id}`);
     return data.channel;
   }
+
+  static async post(body: CreateRequest) {
+    const { data } = await client.post<CreateResponse>("/channel", body);
+    return data.channel;
+  }
 }
 
 export type ListResponse = {
   isSuccess: true;
-  channels: Channel[];
+  channels: Omit<Channel, "customization">[];
+};
+
+type CreateRequest = {
+  name: string;
+  primaryColor: string;
+};
+
+type CreateResponse = {
+  isSuccess: true;
+  channel: Channel;
 };
 
 type GetResponse = {
+  isSuccess: true;
   channel: Channel;
 };
 
@@ -34,4 +52,5 @@ export type Channel = {
   welcomeMessage: string;
   createdAt: Date;
   updatedAt: Date;
+  customization: DeepPartial<ConfigrationZod>;
 };

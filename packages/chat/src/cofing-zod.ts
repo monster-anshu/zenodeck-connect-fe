@@ -8,30 +8,22 @@ const customizationSchema = z.object({
   backgroundColor: hexColor,
   chatIcon: z.object({
     maximized: z.object({
-      backgroundColor: hexColor,
       icon: z.string(),
-      iconColor: hexColor,
     }),
     minimized: z.object({
-      backgroundColor: hexColor,
       icon: z.string(),
-      iconColor: hexColor,
     }),
     position: z.enum(["LEFT", "RIGHT"]),
   }),
   chatWindow: z.object({
     attachmentIcon: z.object({
-      color: hexColor,
       enable: z.boolean(),
     }),
-    backgroundColor: hexColor,
     botChatbox: z.object({
       backgroundColor: hexColor,
       textColor: hexColor,
     }),
     emojiIcon: z.object({
-      activeColor: hexColor,
-      color: hexColor,
       enable: z.boolean(),
     }),
     enterKeyToSendMessage: z.boolean(),
@@ -42,8 +34,8 @@ const customizationSchema = z.object({
       textColor: hexColor,
     }),
     sendButton: z.object({
-      backgroundColor: hexColor,
-      textColor: hexColor,
+      //   backgroundColor: hexColor,
+      //   textColor: hexColor,
     }),
     userChatbox: z.object({
       backgroundColor: hexColor,
@@ -66,8 +58,8 @@ const customizationSchema = z.object({
   multiChat: z.object({
     enable: z.boolean(),
     submitButton: z.object({
-      backgroundColor: hexColor,
-      textColor: hexColor,
+      //   backgroundColor: hexColor,
+      //   textColor: hexColor,
     }),
   }),
   navigation: z.array(
@@ -79,8 +71,8 @@ const customizationSchema = z.object({
   preChat: z.object({
     enable: z.boolean(),
     submitButton: z.object({
-      backgroundColor: hexColor,
-      textColor: hexColor,
+      //   backgroundColor: hexColor,
+      //   textColor: hexColor,
     }),
   }),
   primaryColor: hexColor,

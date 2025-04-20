@@ -12,16 +12,16 @@ const ChatIcon: FC<IChatIconProps> = ({ isOpen, onClick }) => {
   return (
     <button
       className={cn(
-        "grid h-14 w-14 place-items-center rounded-full",
+        "bg-primary grid h-14 w-14 place-items-center rounded-full",
         config.chatIcon.position === "LEFT" ? "mr-auto" : "ml-auto"
       )}
       onClick={onClick}
-      style={{
-        background: curr.backgroundColor,
-        color: curr.iconColor,
-      }}
+      // style={{
+      //   background: config.primaryColor,
+      //   color: config.textColor,
+      // }}
     >
-      <img src={config.chatIcon.minimized.icon} height={36} width={36} />
+      <img src={curr.icon} height={36} width={36} />
     </button>
   );
 };

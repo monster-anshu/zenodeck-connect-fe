@@ -39,7 +39,7 @@ const Messages: FC<IMessagesProps> = ({
     <main
       className="grid h-full grid-rows-[auto_1fr_auto] rounded-3xl"
       style={{
-        background: config.chatWindow.backgroundColor,
+        background: config.backgroundColor,
       }}
     >
       <Header size="sm" onBack={onBack}>
@@ -57,7 +57,7 @@ const Messages: FC<IMessagesProps> = ({
       <div
         className="-mt-6 flex flex-col-reverse gap-y-1 overflow-auto rounded-t-3xl py-2"
         style={{
-          background: config.chatWindow.backgroundColor,
+          background: config.backgroundColor,
         }}
       >
         {messages.map((message) => {
@@ -73,8 +73,8 @@ const Messages: FC<IMessagesProps> = ({
         />
         <button
           style={{
-            color: config.chatWindow.sendButton.textColor,
-            background: config.chatWindow.sendButton.backgroundColor,
+            color: config.primaryColor,
+            background: config.primaryTextColor,
           }}
           onClick={handleSend}
           className="min-h-[60px] rounded-xl border px-4 py-2"

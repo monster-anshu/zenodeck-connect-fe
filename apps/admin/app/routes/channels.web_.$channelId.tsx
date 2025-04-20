@@ -53,7 +53,7 @@ const validTabs = [
   "embed",
   "home",
   "chats",
-  "fqs",
+  "faq",
   "ticket",
 ] as const;
 

@@ -30,41 +30,23 @@ export const config: Configration = {
   backgroundColor: "#ffffff",
   textColor: "#000000",
   chatIcon: {
-    // bottomSpacing: 56,
-    // enable: true,
-    // greetingPopUpInterval: 5,
     maximized: {
-      backgroundColor: "#ffffff",
       icon: "https://assets.orufy.com/down_arrow2_757d373883.svg",
-      iconColor: "#ffffff",
     },
     minimized: {
-      backgroundColor: "#B51F1F",
       icon: "https://assets.orufy.com/chat_Bubble_Ellipsis_b6c4f1832b_77e3b64276.svg",
-      iconColor: "#ffffff",
     },
     position: "RIGHT",
-    // presentation: "SLIDE_UP",
-    // sideSpacing: 16,
-    // size: "STANDARD",
   },
-  // chatReplyExpectation: {
-  //   enable: true,
-  //   replyTime: "LESS_THAN_1_MINUTE",
-  // },
   chatWindow: {
     attachmentIcon: {
-      color: "black",
       enable: true,
     },
-    backgroundColor: "#ffffff",
     botChatbox: {
       backgroundColor: "#ffffff",
       textColor: "black",
     },
     emojiIcon: {
-      activeColor: "black",
-      color: "#ffffff",
       enable: true,
     },
     enterKeyToSendMessage: true,
@@ -74,10 +56,7 @@ export const config: Configration = {
       placeholder: "",
       textColor: "black",
     },
-    sendButton: {
-      backgroundColor: "#ffffff",
-      textColor: "#c2c2c2",
-    },
+    sendButton: {},
     userChatbox: {
       backgroundColor: "#ffffff",
       textColor: "black",
@@ -85,9 +64,8 @@ export const config: Configration = {
   },
   header: {
     backgroundColor:
-      "linear-gradient(to top, rgb(228, 193, 255), rgb(128, 93, 207))",
+      "linear-gradient(180deg,rgba(181, 31, 31, 1) 0%, rgba(191, 161, 109, 1) 50%, rgba(255, 179, 179, 1) 100%)",
     displayProfilePicture: true,
-    // headerType: "LINEAR",
     logo: "",
     showLogo: false,
     textColor: "#ffffff",
@@ -116,10 +94,7 @@ export const config: Configration = {
   ],
   i18n: [deafultLanguage],
   multiChat: {
-    submitButton: {
-      backgroundColor: "#675CC0",
-      textColor: "#ffffff",
-    },
+    submitButton: {},
     enable: true,
   },
   navigation: [
@@ -142,12 +117,6 @@ export const config: Configration = {
   ],
   preChat: {
     enable: true,
-    submitButton: {
-      backgroundColor: "#675CC0",
-      textColor: "#ffffff",
-    },
+    submitButton: {},
   },
-  // ticket: {
-  //   ticketCreateEnable: true,
-  // },
 };

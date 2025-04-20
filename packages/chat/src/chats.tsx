@@ -28,7 +28,7 @@ const Chats: FC<IChatsProps> = ({
     <main
       className="grid h-full grid-rows-[auto_1fr_auto_auto] rounded-3xl"
       style={{
-        background: config.chatWindow.backgroundColor,
+        background: config.backgroundColor,
       }}
     >
       <Header onBack={onBack}>
@@ -94,8 +94,8 @@ const Chats: FC<IChatsProps> = ({
         className="mx-4 mt-2 rounded-lg py-5"
         loading={isLoading}
         style={{
-          color: config.multiChat.submitButton.textColor,
-          background: config.multiChat.submitButton.backgroundColor,
+          color: config.primaryTextColor,
+          background: config.primaryColor,
         }}
       >
         {i18n("multiChatButton")}
