@@ -13,7 +13,7 @@ export class ChannelService {
     return data.channel;
   }
 
-  static async post(body: CreateRequest) {
+  static async create(body: CreateRequest) {
     const { data } = await client.post<CreateResponse>("/channel", body);
     return data.channel;
   }

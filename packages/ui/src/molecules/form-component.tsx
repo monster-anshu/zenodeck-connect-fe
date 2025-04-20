@@ -68,7 +68,7 @@ const FormComponent = <Element extends FormElement<z.ZodAny>>({
               <FormLabel>{field.value}</FormLabel>
               <div className="relative">
                 <FormLabel
-                  className="block h-5 w-5 rounded-full"
+                  className="block h-5 w-5 rounded-full border"
                   style={{
                     background: field.value,
                   }}
