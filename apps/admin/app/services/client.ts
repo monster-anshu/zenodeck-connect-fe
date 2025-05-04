@@ -29,8 +29,8 @@ const commonErrorInterceptor = async (error: AxiosError<ApiResponse>) => {
 
   if (status === 401) {
     const url = new URL(USER_SERVICE_URL + "/login");
-    url.searchParams.set("productId", "CAMPAIGN");
-    url.searchParams.set("next", encodeURIComponent(window.location.href));
+    url.searchParams.set("productId", "CONNECT");
+    url.searchParams.set("redirect", encodeURIComponent(window.location.href));
     window.location.href = url.toString();
     await new Promise(() => {});
     return;
