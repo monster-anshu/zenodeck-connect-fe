@@ -25,7 +25,7 @@ const Home: FC<IHomeProps> = ({ onSendMessage }) => {
     <main
       className="grid h-full grid-rows-[auto_1fr_auto] rounded-3xl"
       style={{
-        background: config.chatWindow.backgroundColor,
+        background: config.backgroundColor,
       }}
     >
       <Header>

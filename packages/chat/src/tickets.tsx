@@ -10,7 +10,7 @@ const Tickets: FC<ITicketsProps> = () => {
   return (
     <main
       style={{
-        background: config.chatWindow.backgroundColor,
+        background: config.backgroundColor,
       }}
       className="grid h-full grid-rows-[auto_1fr_auto] rounded-3xl"
     >
